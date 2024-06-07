@@ -1,13 +1,13 @@
-import createError from 'http-errors';
-import express from 'express';
-import session from 'express-session';
-import path from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-import helmet from 'helmet';
+const createError = require('http-errors');
+const express =  require('express');
+const session = require('express-session');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const helmet = require('helmet');
 
-import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
+const indexRouter = require('./routes/index.js');
+const usersRouter = require('./routes/users.js');
 
 const app = express();
 
@@ -21,10 +21,11 @@ app.use(
     },
   })
 );
+
 // Reducing fingerprinting
 app.disable('x-powered-by')
 
-// set up cookie security 
+// Set up cookie security 
 app.set('trust proxy', 1); // trust first proxy
 app.use(session({
   secret: 's3Cur3',
@@ -32,14 +33,14 @@ app.use(session({
 }))
 
 // view engine setup
-app.set('views', path.join(path.dirname(new URL(import.meta.url).pathname), 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(path.dirname(new URL(import.meta.url).pathname), 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -48,11 +49,6 @@ app.use('/users', usersRouter);
 app.use((req, res, next) => {
   next(createError(404));
 });
-
-// custom 404 and status example
-app.use((req, res, next) => {
-  res.status(404).send("Sorry can't find that!")
-})
 
 // error handler
 app.use((err, req, res, next) => {
@@ -65,4 +61,4 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-export default app;
+module.exports = app;
