@@ -1,15 +1,37 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express =  require('express');
+const session = require('express-session');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const helmet = require('helmet');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var helmet = require('helmet');
-var app = express();
+const indexRouter = require('./routes/index.js');
+const usersRouter = require('./routes/users.js');
+
+const app = express();
+
 // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "script-src": ["'self'", "example.com"],
+      },
+    },
+  })
+);
+
+// Reducing fingerprinting
+app.disable('x-powered-by')
+
+// Set up cookie security 
+app.set('trust proxy', 1); // trust first proxy
+app.use(session({
+  secret: 's3Cur3',
+  name: 'sessionId'
+}))
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -24,12 +46,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
