@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www & npm run scss & npm run js",
-    "scss": "sass --watch src/scss/main.scss public/stylesheets/govuk-frontend.css",
+    "scss": "sass --watch src/scss/main.scss public/stylesheets/govuk-frontend.min.css --style=compressed",
     "js": "cp -R node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js* public/javascripts"
   },
   "dependencies": {
@@ -18,8 +18,8 @@
     "helmet": "^7.1.0",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "sass": "^1.77.4",
-    "nunjucks": "^3.2.4"
+    "nunjucks": "^3.2.4",
+    "sass": "^1.77.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.3"
