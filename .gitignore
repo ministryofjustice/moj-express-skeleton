@@ -3,3 +3,11 @@ node_modules/
 
 # IDEA
 .idea/
+
+# Visual Studios
+.trunk/
+
+# MOJ Express Skeleton
+public/images/*
+public/javascripts/*
+public/stylesheets/*

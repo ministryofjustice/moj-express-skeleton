@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www & npm run scss",
-    "scss": "sass --watch src/scss/main.scss public/stylesheets/style.css"
+    "dev": "nodemon ./bin/www & npm run scss & npm run js",
+    "scss": "sass --watch src/scss/main.scss public/stylesheets/govuk-frontend.css",
+    "js": "cp -R node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js* public/javascripts"
   },
   "dependencies": {
     "chokidar": "^3.6.0",
@@ -16,7 +17,6 @@
     "govuk-frontend": "^5.4.0",
     "helmet": "^7.1.0",
     "http-errors": "~1.6.3",
-    "jade": "^0.29.0",
     "morgan": "~1.9.1",
     "sass": "^1.77.4",
     "nunjucks": "^3.2.4"

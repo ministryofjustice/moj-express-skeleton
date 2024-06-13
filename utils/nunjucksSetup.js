@@ -11,6 +11,7 @@ function nunjucksSetup(app) {
         [
             path.join(__dirname, '../views'),
             'node_modules/govuk-frontend/dist',
+            'node_modules/govuk-frontend/dist',
             'node_modules/govuk-frontend/dist/components/',
         ],
         {
