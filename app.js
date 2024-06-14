@@ -6,11 +6,24 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const helmet = require('helmet');
 const nunjucksSetup = require('./utils/nunjucksSetup');
+const compression = require('compression');
 
 const indexRouter = require('./routes/index.js');
 const usersRouter = require('./routes/users.js');
 
 const app = express();
+
+// Response compression
+app.use(compression({
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']) {
+      // Don't compress responses with this request header
+      return false;
+    }
+    // Fallback to the standard filter function
+    return compression.filter(req, res);
+  }
+}));
 
 // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
 app.use(
