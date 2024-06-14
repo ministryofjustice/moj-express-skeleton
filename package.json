@@ -4,11 +4,14 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www & npm run scss",
-    "scss": "sass --watch src/scss/main.scss public/stylesheets/style.css"
+    "dev": "nodemon ./bin/www & npm run scss & npm run js & npm run assets",
+    "scss": "sass --watch src/scss/main.scss public/stylesheets/application.min.css --style=compressed",
+    "js": "cp -R node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js* public/javascripts",
+    "assets": "cp -R node_modules/govuk-frontend/dist/govuk/assets/ public/assets"
   },
   "dependencies": {
     "chokidar": "^3.6.0",
+    "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "^4.19.2",
@@ -16,10 +19,9 @@
     "govuk-frontend": "^5.4.0",
     "helmet": "^7.1.0",
     "http-errors": "~1.6.3",
-    "jade": "^0.29.0",
     "morgan": "~1.9.1",
-    "sass": "^1.77.4",
-    "nunjucks": "^3.2.4"
+    "nunjucks": "^3.2.4",
+    "sass": "^1.77.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.3"

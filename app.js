@@ -6,11 +6,24 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const helmet = require('helmet');
 const nunjucksSetup = require('./utils/nunjucksSetup');
+const compression = require('compression');
 
 const indexRouter = require('./routes/index.js');
-const usersRouter = require('./routes/users.js');
+const usersRouter = require('./routes/demos.js');
 
 const app = express();
+
+// Response compression
+app.use(compression({
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']) {
+      // Don't compress responses with this request header
+      return false;
+    }
+    // Fallback to the standard filter function
+    return compression.filter(req, res);
+  }
+}));
 
 // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
 app.use(
@@ -40,10 +53,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/demos', usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -52,13 +67,19 @@ app.use((req, res, next) => {
 
 // error handler
 app.use((err, req, res, next) => {
-  // set locals, only providing error in development
+  // Set locals, providing error details
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  // Set status based on error status or default to 500
+  const statusCode = err.status || 500
+  res.status(statusCode);
+
+  // Render the error page with both the error message and status code
+  res.render('main/error', {
+    error: res.locals.message,
+    status: statusCode
+  });
 });
 
 module.exports = app;
