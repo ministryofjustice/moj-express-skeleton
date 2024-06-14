@@ -8,6 +8,6 @@ node_modules/
 .trunk/
 
 # MOJ Express Skeleton
-public/images/*
+public/assets/*
 public/javascripts/*
 public/stylesheets/*
