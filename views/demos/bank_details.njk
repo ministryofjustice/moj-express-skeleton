@@ -1,0 +1,21 @@
+{% extends "base.njk" %}
+
+{% block pageTitle %}{%- if form.errors %}Error: {% endif -%}Bank details – GOV.UK{% endblock %}
+
+{% block beforeContent %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            {{ super() }}
+            <span class="govuk-caption-xl">Demo form</span>
+            <h1 class="govuk-heading-xl">Bank or building society account details</h1>
+
+            <form action="" method="post" novalidate>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

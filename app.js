@@ -9,7 +9,7 @@ const nunjucksSetup = require('./utils/nunjucksSetup');
 const compression = require('compression');
 
 const indexRouter = require('./routes/index.js');
-const usersRouter = require('./routes/users.js');
+const usersRouter = require('./routes/demos.js');
 
 const app = express();
 
@@ -58,7 +58,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/demos', usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -72,10 +72,14 @@ app.use((err, req, res, next) => {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // Set status based on error status or default to 500
-  res.status(err.status || 500);
+  const statusCode = err.status || 500
+  res.status(statusCode);
 
-  // Render the error page and pass the error message
-  res.render('main/error', { error: res.locals.message });
+  // Render the error page with both the error message and status code
+  res.render('main/error', {
+    error: res.locals.message,
+    status: statusCode
+  });
 });
 
 module.exports = app;
