@@ -37,6 +37,25 @@
 {% endblock %}
 
 {% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "#",
+          text: "Accessibility"
+        },
+        {
+          href: "#",
+          text: "Cookies"
+        },
+        {
+          href: "#",
+          text: "Privacy"
+        }
+      ],
+      html: 'Built by <a href="' + 'DEPARTMENT_URL' +'" class="govuk-footer__link">' +'DEPARTMENT_NAME' + '</a>'
+    }
+  }) }}
 {% endblock %}
 
 {% block bodyEnd %}
