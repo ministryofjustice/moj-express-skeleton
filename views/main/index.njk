@@ -1,46 +1,131 @@
 {% extends "base.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 
-{% block beforeContent %}
-    {{ super() }}
+{% block header %}
+    {{ govukHeader({
+        homepageUrl: "#",
+        serviceName: "SERVICE_NAME",
+        serviceUrl: "#",
+        classes: "app-header"
+    }) }}
 {% endblock %}
 
-{% block content %}
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
-            <h1 class="govuk-heading-l">Hello, World!</h1>
-            <p class="govuk-body-l">This is a template <a href="https://expressjs.com/" class="govuk-link">Express.js</a>
-                app using the <a href="https://frontend.design-system.service.gov.uk/" class="govuk-link">GOV.UK Frontend</a> and
-                <a href="https://design-system.service.gov.uk/" class="govuk-link">GOV.UK Design System</a> which is designed to
-                get a new project started quicker.
-            </p>
-            <p class="govuk-body">The app is provided intentionally bare, with just the essential parts that all services need,
-                such as error pages, accessibility statement, cookie banner, cookie page and privacy notice.</p>
+{# Overriding main to allow full wigth for landing page. #}
+   {% block main %}
+       <div class="{%- if containerClasses %} {{ containerClasses }}{% endif %}">
+           {% block beforeContent %}
+               {{ super() }}
+           {% endblock %}
+           <main {%- if mainClasses %} {{ mainClasses }}{% endif %}" id="main-content" {%- if mainLang %} lang="{{ mainLang }}"{% endif %}>
+               {% block content %}
+                   <div class="app-masthead">
+                       <div class="govuk-width-container">
+                           <div class="govuk-grid-row">
+                               <div class="govuk-grid-column-two-thirds-from-desktop">
+                                   <h1 class="govuk-heading-xl app-masthead__title">MOJ Express JS Skeleton</h1>
+                                   <p class="app-masthead__description">
+                                       The app is provided intentionally bare, with just the essential parts that all services need,
+                                       such as error pages, accessibility statement, cookie banner, cookie page and privacy notice.
+                                   </p>
+                                   {{ govukButton({
+                                       text: "Form example",
+                                       classes: "govuk-button govuk-button--inverse govuk-!-margin-top-6 govuk-!-margin-bottom-0 govuk-button--start"
+                                   }) }}
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="app-whats-new">
+                       <div class="govuk-width-container">
+                           <div class="govuk-main-wrapper govuk-main-wrapper--l">
+                               <div class="govuk-grid-row">
+                                   <div class="govuk-grid-column-two-thirds-from-desktop">
+                                           <h2 class="govuk-heading-m">What features does this skeleton have?</h2>
+                                           <p class="govuk-body">A number of other packages are used to provide the features listed below with sensible and
+                                               best-practice defaults:</p>
+                                           <ul class="govuk-list govuk-list--bullet">
+                                               <li>Asset management</li>
+                                               <li>Cache busting</li>
+                                               <li>Form validation</li>
+                                               <li>CSRF protection</li>
+                                               <li>Content Security Policy (CSP)</li>
+                                               <li>Response compression</li>
+                                               <li>Rate limiting</li>
+                                               <li>Nunjucks support</li>
+                                               <li>ES6 JSDocs</li>
+                                               <li>Linter</li>
+                                           </ul>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
 
-            <h2 class="govuk-heading-m">Features</h2>
-            <p class="govuk-body">A number of other packages are used to provide the features listed below with sensible and
-                best-practice defaults:</p>
-            <ul class="govuk-list govuk-list--bullet">
-                <li>Asset management</li>
-                <li>Cache busting</li>
-                <li>Form generation and validation</li>
-                <li>Form error handing</li>
-                <li>Flash messages</li>
-                <li>CSRF protection</li>
-                <li>HTTP security headers</li>
-                <li>Content Security Policy (CSP)</li>
-                <li>Response compression</li>
-                <li>Rate limiting</li>
-            </ul>
+                   <div class="govuk-width-container">
+                       <div class="govuk-main-wrapper govuk-main-wrapper--l">
+                           <div class="govuk-grid-row">
+                               <div class="govuk-grid-column-one-third-from-desktop govuk-!-margin-bottom-8">
+                                   <h2 class="govuk-heading-l govuk-!-font-weight-bold">Styles</h2>
+                                   <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices leo
+                                       nec vestibulum pulvinar. Nunc faucibus dui nisi, dapibus ultricies mauris maximus
+                                       id.</p>
+                                   <p class="govuk-body govuk-!-margin-bottom-0"><a href="/styles/" class="govuk-link govuk-!-font-weight-bold">Browse styles</a></p>
+                               </div>
+                               <div class="govuk-grid-column-one-third-from-desktop govuk-!-margin-bottom-8">
+                                   <h2 class="govuk-heading-l">Nunjuck</h2>
+                                   <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices leo
+                                       nec vestibulum pulvinar. Nunc faucibus dui nisi, dapibus ultricies mauris maximus
+                                       id.</p>
+                                   <p class="govuk-body govuk-!-margin-bottom-0"><a href="/components/" class="govuk-link govuk-!-font-weight-bold">Browse components</a></p>
+                               </div>
+                               <div class="govuk-grid-column-one-third-from-desktop govuk-!-margin-bottom-8">
+                                   <h2 class="govuk-heading-l">Secure</h2>
+                                   <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices leo
+                                       nec vestibulum pulvinar. Nunc faucibus dui nisi, dapibus ultricies mauris maximus
+                                       id.</p>
+                                   <p class="govuk-body govuk-!-margin-bottom-0"><a href="/patterns/" class="govuk-link govuk-!-font-weight-bold">Browse patterns</a></p>
+                               </div>
 
-            <h2 class="govuk-heading-m">Demos</h2>
-            <ul class="govuk-list govuk-list--bullet">
-                <li><a class="govuk-link" href="#">Components</a></li>
-                <li><a class="govuk-link" href="/demos/forms">Forms</a></li>
-            </ul>
+                               <div class="govuk-grid-column-full">
+                                   <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl govuk-!-margin-top-0">
+                               </div>
 
-            <h2 class="govuk-heading-m">Documentation</h2>
-            <p class="govuk-body">Detailed documentation on the features listed above and the next steps to start
-                building out your app on top of this template is on <a class="govuk-link" href="#">GitHub</a></p>
-        </div>
-    </div>
-{% endblock %}
+                               <div class="govuk-grid-column-two-thirds">
+                                   <h2 class="govuk-heading-l">Why use our Express skeleton?</h2>
+                                   <p class="govuk-body">
+                                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices leo
+                                       nec vestibulum pulvinar. Nunc faucibus dui nisi, dapibus ultricies mauris maximus
+                                       id.
+                                   </p>
+                               </div>
+
+                               <div class="govuk-grid-column-full">
+                                   <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl">
+                               </div>
+
+                               <div class="govuk-grid-column-two-thirds-from-desktop">
+                                   <h2 id="community" class="govuk-heading-l">Demos</h2>
+                                   <p class="govuk-body">
+                                       See working examples of this skeleton and how you can set it up and use it.
+                                   </p>
+                               </div>
+
+                               <div class="govuk-grid-column-full">
+                                   <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl">
+                               </div>
+
+                               <div class="govuk-grid-column-two-thirds-from-desktop">
+                                   <h2 id="support" class="govuk-heading-l">Maintainers</h2>
+                                   <p class="govuk-body">
+                                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices leo
+                                       nec vestibulum pulvinar. Nunc faucibus dui nisi, dapibus ultricies mauris maximus
+                                       id.
+                                   </p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               {% endblock %}
+           </main>
+       </div>
+   {% endblock %}
