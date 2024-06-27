@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const nunjucksSetup = require('./utils/nunjucksSetup');
 const compression = require('compression');
 const rateLimitSetUp = require('./utils/rateLimitSetUp');
+const config = require('./config');
 
 const indexRouter = require('./routes/index.js');
 
@@ -50,7 +51,7 @@ app.use(session({
 nunjucksSetup(app)
 
 // Apply the general rate limiter to all requests
-rateLimitSetUp(app)
+rateLimitSetUp(app, config)
 
 app.use(logger('dev'));
 app.use(express.json());

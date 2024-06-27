@@ -8,16 +8,16 @@ const rateLimit = require('express-rate-limit');
  * Sets up rate limiting for the given Express app.
  *
  * @param {Object} app - The Express app instance.
- *
+ * @param config
  */
-function rateLimitSetUp(app) {
+function rateLimitSetUp(app, config) {
     /**
      * Rate limiter for general routes.
      * Limits each IP to 100 requests per 15 minutes.
      */
     const generalLimiter = rateLimit({
-        windowMs: 15 * 60 * 1000, // 15 minutes
-        max: 100,
+        windowMs: config.RATE_WINDOW_MS,
+        max: config.RATE_LIMIT_MAX,
         message: 'Too many requests, please try again later.'
     });
 

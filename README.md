@@ -1,5 +1,21 @@
-# moj-express-skeleton
-MOJ Express JS Skeleton to be used to help frontend projects.
+# MOJ Express Skeleton
+MOJ Express.js Skeleton for all your frontend needs.
+
+## Getting started
+
+Create your local config file `.env` from the template file:
+
+```shell
+cp .env.example .env
+```
+
+Install and run application
+```
+npm install
+npm run dev
+```
+
+Then, load http://localhost:3000/ in your browser to access the app.
 
 ### Running the app locally with DEBUG enabled
 
