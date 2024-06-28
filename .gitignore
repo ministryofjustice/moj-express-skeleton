@@ -11,3 +11,4 @@ node_modules/
 public/assets/*
 public/javascripts/*
 public/stylesheets/*
+.env
