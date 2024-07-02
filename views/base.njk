@@ -32,7 +32,6 @@
 {% endblock %}
 
 {% block content %}
-  <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
   <h1 class="govuk-heading-xl">Default page template</h1>
 {% endblock %}
 
@@ -60,8 +59,8 @@
 
 {% block bodyEnd %}
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
-  <script type="module" src="/javascripts/govuk-frontend.min.js"></script>
-  <script type="module">
+  <script type="module" nonce="{{ cspNonce }}" src="/javascripts/govuk-frontend.min.js"></script>
+  <script type="module" nonce="{{ cspNonce }}">
     import { initAll } from '/javascripts/govuk-frontend.min.js'
     initAll()
   </script>

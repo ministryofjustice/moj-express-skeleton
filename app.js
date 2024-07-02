@@ -4,10 +4,11 @@ const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const helmet = require('helmet');
 const nunjucksSetup = require('./utils/nunjucksSetup');
 const compression = require('compression');
 const rateLimitSetUp = require('./utils/rateLimitSetUp');
+const helmetSetup = require('./utils/helmetSetup');
+const setupCSP = require('./middleware/setupCSP');
 const config = require('./config');
 
 const indexRouter = require('./routes/index.js');
@@ -26,16 +27,11 @@ app.use(compression({
   }
 }));
 
+// Middleware function to set up a Content Security Policy (CSP) nonce for each request.
+setupCSP(app)
+
 // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        "script-src": ["'self'", "example.com"],
-      },
-    },
-  })
-);
+helmetSetup(app)
 
 // Reducing fingerprinting
 app.disable('x-powered-by')
