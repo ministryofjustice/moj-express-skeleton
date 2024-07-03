@@ -9,6 +9,7 @@ const compression = require('compression');
 const rateLimitSetUp = require('./utils/rateLimitSetUp');
 const helmetSetup = require('./utils/helmetSetup');
 const setupCSP = require('./middleware/setupCSP');
+const bodyParser = require('body-parser');
 const config = require('./config');
 
 const indexRouter = require('./routes/index.js');
@@ -48,6 +49,9 @@ nunjucksSetup(app)
 
 // Apply the general rate limiter to all requests
 rateLimitSetUp(app, config)
+
+// bodyParser
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(logger('dev'));
 app.use(express.json());
