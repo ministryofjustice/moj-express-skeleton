@@ -1,12 +1,10 @@
 {% extends "base.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {% block header %}
     {{ govukHeader({
         homepageUrl: "#",
-        serviceName: "SERVICE_NAME",
+        serviceName: config.SERVICE_NAME,
         serviceUrl: "#",
         classes: "app-header"
     }) }}
@@ -32,13 +30,13 @@
                                    {{ govukButton({
                                        text: "Form example",
                                        classes: "govuk-button govuk-button--inverse govuk-!-margin-top-6 govuk-!-margin-bottom-0 govuk-button--start",
-                                       href: "#form-example"
+                                       href: "#demos"
                                    }) }}
                                </div>
                            </div>
                        </div>
                    </div>
-                   <div class="app-whats-new">
+                   <div class="app-light-grey">
                        <div class="govuk-width-container">
                            <div class="govuk-main-wrapper govuk-main-wrapper--l">
                                <div class="govuk-grid-row">
@@ -111,62 +109,7 @@
                                    <p class="govuk-body">
                                        See working examples of this skeleton and how you can set it up and use it.
                                    </p>
-
-                                   <h3 class="govuk-heading-m">Basic form validation</h3>
-                                   <form id="form-example" action="/" method="post">
-                                       <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-                                       {{ govukInput({
-                                           label: {
-                                               text: "Email address"
-                                           },
-                                           id: "email",
-                                           name: "email",
-                                           type: "email",
-                                           autocomplete: "email",
-                                           spellcheck: false,
-                                           errorMessage: {
-                                               text: "Please enter an email address"
-                                           }
-                                       }) }}
-
-                                       {{ govukInput({
-                                           label: {
-                                               text: "Full name"
-                                           },
-                                           id: "full-name",
-                                           name: "fullName",
-                                           autocomplete: "name",
-                                           spellcheck: false,
-                                           errorMessage: false
-                                       }) }}
-
-                                       {{ govukRadios({
-                                           name: "subcribe",
-                                           errorMessage: false,
-                                           fieldset: {
-                                               legend: {
-                                                   text: "Do you wish to subcribe to our junk emails?",
-                                                   isPageHeading: true,
-                                                   classes: "govuk-fieldset__legend--m"
-                                               }
-                                           },
-                                           items: [
-                                               {
-                                                   value: "yes",
-                                                   text: "Yes"
-                                               },
-                                               {
-                                                   value: "no",
-                                                   text: "No"
-                                               }
-                                           ]
-                                       }) }}
-
-                                       {{ govukButton({
-                                           text: "Submit"
-                                       }) }}
-                                   </form>
-
+                                    {% include "./_form-example.njk" %}
                                </div>
 
                                <div class="govuk-grid-column-full">

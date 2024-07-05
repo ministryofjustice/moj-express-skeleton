@@ -1,10 +1,16 @@
-const nunjucks = require('nunjucks');
 const path = require('path');
+const nunjucks = require('nunjucks');
 
-function nunjucksSetup(app) {
-    const appInstance = app
-    appInstance.set('view engine', 'njk')
-    appInstance.locals.asset_path = '/assets/'
+/**
+ * Sets up Nunjucks as the template engine for the Express application.
+ * Configures Nunjucks to look for template files in specified directories.
+ *
+ * @param {object} app - The Express application instance.
+ */
+const nunjucksSetup = (app) => {
+    const appInstance = app;
+    appInstance.set('view engine', 'njk');
+    appInstance.locals.asset_path = '/assets/';
 
     // Tell nunjucks where to look for njk files
     nunjucks.configure(
@@ -18,7 +24,7 @@ function nunjucksSetup(app) {
             express: appInstance,
             watch: true
         },
-    )
-}
+    );
+};
 
 module.exports = nunjucksSetup;

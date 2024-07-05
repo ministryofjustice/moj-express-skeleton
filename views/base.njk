@@ -1,7 +1,7 @@
 {% extends "govuk/template.njk" %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 
-{% block pageTitle %}SERVICE_NAME – GOV.UK{% endblock %}
+{% block pageTitle %}{{config.SERVICE_NAME}} – GOV.UK{% endblock %}
 
 {% block head %}
   <link rel="stylesheet" href="/stylesheets/application.min.css">
@@ -17,7 +17,7 @@
 {% block header %}
   {{ govukHeader({
     homepageUrl: "#",
-    serviceName: "SERVICE_NAME",
+    serviceName: config.SERVICE_NAME,
     serviceUrl: "#"
   }) }}
 {% endblock %}
@@ -25,7 +25,7 @@
 {% block beforeContent %}
   {{ govukPhaseBanner({
     tag: {
-      text: "SERVICE_PHASE"
+      text: config.SERVICE_PHASE
     },
     html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback by email</a>.'
   }) }}
@@ -52,7 +52,7 @@
           text: "Privacy"
         }
       ],
-      html: 'Built by <a href="' + 'DEPARTMENT_URL' +'" class="govuk-footer__link">' +'DEPARTMENT_NAME' + '</a>'
+      html: 'Built by <a href="' + config.DEPARTMENT_URL +'" class="govuk-footer__link">' + config.DEPARTMENT_NAME + '</a>'
     }
   }) }}
 {% endblock %}

@@ -5,7 +5,7 @@ const crypto = require('crypto');
  *
  * @param {Object} app - The Express application instance.
  */
-function setupCSP(app) {
+const setupCSP = (app) => {
     /**
      * Middleware to generate a CSP nonce and add it to the response locals.
      *
@@ -13,7 +13,7 @@ function setupCSP(app) {
      * @param {Object} res - The Express response object.
      * @param {Function} next - The next middleware function in the stack.
      */
-    function nonceMiddleware(req, res, next) {
+    const nonceMiddleware = (req, res, next) => {
         res.locals.cspNonce = crypto.randomBytes(16).toString('hex');
         next();
     }

@@ -5,7 +5,7 @@ const helmet = require('helmet');
  *
  * @param {Object} app - The Express application instance.
  */
-function helmetSetup(app) {
+const helmetSetup = (app) => {
     app.use(helmet.contentSecurityPolicy({
         directives: {
             defaultSrc: "'self'",

@@ -9,6 +9,7 @@ const compression = require('compression');
 const rateLimitSetUp = require('./utils/rateLimitSetUp');
 const helmetSetup = require('./utils/helmetSetup');
 const setupCSP = require('./middleware/setupCSP');
+const setupConfig = require('./middleware/setupConfigs');
 const bodyParser = require('body-parser');
 const config = require('./config');
 
@@ -41,14 +42,19 @@ app.disable('x-powered-by')
 app.set('trust proxy', 1); // trust first proxy
 app.use(session({
   secret: 's3Cur3',
-  name: 'sessionId'
-}))
+  name: 'sessionId',
+  resave: false,
+  saveUninitialized: false
+}));
 
 // view engine setup
 nunjucksSetup(app)
 
 // Apply the general rate limiter to all requests
 rateLimitSetUp(app, config)
+
+// Config in templates
+setupConfig(app)
 
 // bodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
