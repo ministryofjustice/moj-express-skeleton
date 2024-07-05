@@ -9,11 +9,15 @@ const compression = require('compression');
 const rateLimitSetUp = require('./utils/rateLimitSetUp');
 const helmetSetup = require('./utils/helmetSetup');
 const setupCSP = require('./middleware/setupCSP');
+const setupDB = require('./middleware/setupDB');
 const config = require('./config');
 
 const indexRouter = require('./routes/index.js');
 
 const app = express();
+
+//Set up DB to be used in requests
+setupDB(app)
 
 // Response compression
 app.use(compression({
