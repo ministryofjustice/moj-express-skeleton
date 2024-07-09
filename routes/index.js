@@ -2,15 +2,14 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const csurf = require('csurf');
-const csrfProtection = csurf({ cookie: true });
 
 /* GET home page. */
-router.get('/', csrfProtection, (req, res, next) => {
+router.get('/', (req, res, next) => {
   res.render('main/index', {csrfToken: req.csrfToken(), errors: {}, data: {} });
 });
 
 // This is a basic example of express validation.
-router.post('/', csrfProtection, [
+router.post('/', [
   check('email').isEmail().withMessage('Invalid email').normalizeEmail(),
   check('fullName').notEmpty().withMessage('Name is required').trim().escape(),
   check('subscribe', 'Please select an option').notEmpty()

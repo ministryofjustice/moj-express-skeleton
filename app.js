@@ -12,6 +12,8 @@ const setupCSP = require('./middleware/setupCSP');
 const setupConfig = require('./middleware/setupConfigs');
 const bodyParser = require('body-parser');
 const config = require('./config');
+const csurf = require("csurf");
+
 
 const indexRouter = require('./routes/index.js');
 
@@ -34,6 +36,9 @@ setupCSP(app)
 
 // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
 helmetSetup(app)
+
+// csrfProtection setup
+const csrfProtection = csurf({ cookie: true });
 
 // Reducing fingerprinting
 app.disable('x-powered-by')
@@ -67,7 +72,8 @@ app.use(cookieParser());
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+// Register routes
+app.use('/', csrfProtection, indexRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
