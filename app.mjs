@@ -1,17 +1,20 @@
-const createError = require('http-errors');
-const express =  require('express');
-const session = require('express-session');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const nunjucksSetup = require('./utils/nunjucksSetup');
-const compression = require('compression');
-const rateLimitSetUp = require('./utils/rateLimitSetUp');
-const helmetSetup = require('./utils/helmetSetup');
-const setupCSP = require('./middleware/setupCSP');
-const config = require('./config');
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import session from 'express-session';
+import compression from 'compression';
+import nunjucksSetup from './utils/nunjucksSetup.mjs';
+import rateLimitSetUp from './utils/rateLimitSetUp.mjs';
+import helmetSetup from './utils/helmetSetup.mjs';
+import setupCSP from './middleware/setupCSP.mjs';
+import config from './config.mjs';
+import indexRouter from './routes/index.mjs';
 
-const indexRouter = require('./routes/index.js');
+// Get __dirname equivalent
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -28,26 +31,26 @@ app.use(compression({
 }));
 
 // Middleware function to set up a Content Security Policy (CSP) nonce for each request.
-setupCSP(app)
+setupCSP(app);
 
 // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
-helmetSetup(app)
+helmetSetup(app);
 
 // Reducing fingerprinting
-app.disable('x-powered-by')
+app.disable('x-powered-by');
 
-// Set up cookie security 
+// Set up cookie security
 app.set('trust proxy', 1); // trust first proxy
 app.use(session({
   secret: 's3Cur3',
   name: 'sessionId'
-}))
+}));
 
 // view engine setup
-nunjucksSetup(app)
+nunjucksSetup(app);
 
 // Apply the general rate limiter to all requests
-rateLimitSetUp(app, config)
+rateLimitSetUp(app, config);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -71,7 +74,7 @@ app.use((err, req, res, next) => {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // Set status based on error status or default to 500
-  const statusCode = err.status || 500
+  const statusCode = err.status || 500;
   res.status(statusCode);
 
   // Render the error page with both the error message and status code
@@ -81,4 +84,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-module.exports = app;
+export default app;

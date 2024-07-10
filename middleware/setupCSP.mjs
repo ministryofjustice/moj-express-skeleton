@@ -1,11 +1,11 @@
-const crypto = require('crypto');
+import crypto from 'crypto';
 
 /**
  * Middleware function to set up a Content Security Policy (CSP) nonce for each request.
  *
  * @param {Object} app - The Express application instance.
  */
-function setupCSP(app) {
+const setupCSP = (app) => {
     /**
      * Middleware to generate a CSP nonce and add it to the response locals.
      *
@@ -21,4 +21,4 @@ function setupCSP(app) {
     app.use(nonceMiddleware);
 }
 
-module.exports = setupCSP;
+export default setupCSP;

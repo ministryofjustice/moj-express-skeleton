@@ -1,5 +1,5 @@
-// Load environment variables from .env file
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Get environment variables
 const config = {
@@ -7,4 +7,4 @@ const config = {
     RATE_WINDOW_MS: parseInt(process.env.RATE_WINDOW_MS, 10) || 15 * 60 * 1000,
 };
 
-module.exports = config;
+export default config;
