@@ -5,7 +5,7 @@ import crypto from 'crypto';
  *
  * @param {Object} app - The Express application instance.
  */
-function setupCSP(app) {
+const setupCSP = (app) => {
     /**
      * Middleware to generate a CSP nonce and add it to the response locals.
      *
