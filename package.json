@@ -2,6 +2,8 @@
   "name": "moj-express-skeleton",
   "version": "0.0.0",
   "private": true,
+  "main": "index.mjs",
+  "type": "module",
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www & npm run scss & npm run js & npm run assets",

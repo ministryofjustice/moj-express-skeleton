@@ -1,14 +1,14 @@
-const helmet = require('helmet');
+import helmet from 'helmet';
 
 /**
  * Sets up Helmet middleware for the Express application to configure Content Security Policy (CSP).
  *
  * @param {Object} app - The Express application instance.
  */
-function helmetSetup(app) {
+const helmetSetup = (app) => {
     app.use(helmet.contentSecurityPolicy({
         directives: {
-            defaultSrc: "'self'",
+            defaultSrc: ["'self'"],
             scriptSrc: [
                 "'self'",
                 /**
@@ -20,14 +20,10 @@ function helmetSetup(app) {
                  */
                     (req, res) => `'nonce-${res.locals.cspNonce}'`
             ],
-            imgSrc: [
-                "'self'"
-            ],
-            connectSrc: [
-                "'self'",
-            ]
+            imgSrc: ["'self'"],
+            connectSrc: ["'self'"]
         }
     }));
 }
 
-module.exports = helmetSetup;
+export default helmetSetup;
