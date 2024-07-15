@@ -11,15 +11,21 @@
     "js": "cp -R node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js* public/javascripts",
     "assets": "cp -R node_modules/govuk-frontend/dist/govuk/assets/ public/assets"
   },
+  "engines": {
+    "node": "20.15.1"
+  },
   "dependencies": {
+    "body-parser": "^1.20.2",
     "chokidar": "^3.6.0",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
+    "csurf": "^1.11.0",
     "debug": "~2.6.9",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-rate-limit": "^7.3.1",
     "express-session": "^1.18.0",
+    "express-validator": "^7.1.0",
     "govuk-frontend": "^5.4.0",
     "helmet": "^7.1.0",
     "http-errors": "~1.6.3",
