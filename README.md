@@ -42,6 +42,18 @@ DEBUG=moj-express-skeleton:* npm start
 ```
 This enables DEBUG, and you can type http://localhost:3000/ into your browser to access the app.
 
+## Routing
+TODO
+
+## Testing
+TODO
+
+### Unit testing
+TODO
+
+### e2e testing
+TODO
+
 
 ## Features
 - [Asset management](#asset-management)
