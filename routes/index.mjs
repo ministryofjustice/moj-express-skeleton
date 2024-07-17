@@ -1,5 +1,5 @@
 import express from 'express';
-import axios from 'axios';
+import axios_api from '../utils/axiosSetp.mjs';
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 router.get('/users', async (req, res, next) => {
   try {
     // json data of fake users
-    const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+    const response = await axios_api.get('https://jsonplaceholder.typicode.com/users');
     res.json(response.data);
   } catch (error) {
     console.error(error);

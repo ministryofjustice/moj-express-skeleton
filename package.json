@@ -29,6 +29,7 @@
     "sass": "^1.77.4"
   },
   "devDependencies": {
+    "middleware-axios": "^2.1.6",
     "nodemon": "^3.1.3"
   }
 }
