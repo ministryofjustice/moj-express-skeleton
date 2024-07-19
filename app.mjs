@@ -10,7 +10,7 @@ import rateLimitSetUp from './utils/rateLimitSetUp.mjs';
 import helmetSetup from './utils/helmetSetup.mjs';
 import setupCSP from './middleware/setupCSP.mjs';
 import config from './config.mjs';
-import indexRouter from './routes/index.mjs'
+import indexRouter from './routes/index.mjs';
 import axiosMiddleware from './utils/axiosSetp.mjs';
 import setupDB from './middleware/setupDB.mjs';
 import setupConfig from './middleware/setupConfigs.mjs';
