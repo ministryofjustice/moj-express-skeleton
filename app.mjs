@@ -11,12 +11,15 @@ import helmetSetup from './utils/helmetSetup.mjs';
 import setupCSP from './middleware/setupCSP.mjs';
 import config from './config.mjs';
 import indexRouter from './routes/index.mjs';
+import axiosMiddleware from './utils/axiosSetp.mjs';
 
 // Get __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+app.use(axiosMiddleware);
 
 // Response compression
 app.use(compression({

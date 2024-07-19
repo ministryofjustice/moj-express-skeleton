@@ -39,7 +39,6 @@ Below is an example of implementation of how to use the `axios_api` function, in
 ```mjs
 // routes/index.mjs
 import express from 'express';
-import axios_api from '../utils/axiosSetp.mjs';
 
 const router = express.Router();
 
@@ -52,12 +51,11 @@ router.get('/', (req, res, next) => {
 // GET users from external API
 router.get('/users', async (req, res, next) => {
   try {
-    // json data of fake users
-    const response = await axios_api.get('https://jsonplaceholder.typicode.com/users');
-    res.json(response.data);
+      // Use the Axios instance attached to the request object
+      const response = await req.axiosMiddleware.get('https://jsonplaceholder.typicode.com/users');
+      res.json(response.data);
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Error fetching users');
+      next(error);
   }
 });
 
