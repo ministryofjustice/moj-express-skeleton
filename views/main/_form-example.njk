@@ -1,0 +1,104 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{# Do not copy this method or view this as proper implemenation. #}
+{# This is only for a simple demo and should NOT be treated as an production example. #}
+{% set email_error = {'text': errors.email.msg} if errors.email else false %}
+{% set name_error = {'text': errors.fullName.msg} if errors.fullName else false %}
+{% set subscribe_error = {'text': errors.subscribe.msg} if errors.subscribe else false %}
+
+{% if data.success %}
+    {% set html %}
+        <h3 class="govuk-notification-banner__heading">
+            Form submitted
+        </h3>
+    {% endset %}
+
+    {{ govukNotificationBanner({
+        html: html,
+        type: "success"
+    }) }}
+{% endif %}
+
+{# Done for demo purposes only, not production ready logic or templating #}
+{% if email_error or name_error or subscribe_error %}
+    {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+            {
+                text: errors.email.msg,
+                href: "#email"
+            },
+            {
+                text: errors.fullName.msg,
+                href: "#name"
+            },
+            {
+                text: errors.subscribe.msg,
+                href: "#subscribe"
+            }
+        ]
+    }) }}
+{% endif %}
+
+<h3 class="govuk-heading-m">Basic form validation example</h3>
+
+<p class="govuk-body">This form does not submit data and is for demo purposes only to demonstrate form validation.</p>
+
+{# Done for demo purposes only, not production ready logic or templating #}
+<form id="form-example" action="/" method="post">
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+    {{ govukInput({
+        label: {
+            text: "Email address"
+        },
+        id: "email",
+        name: "email",
+        type: "email",
+        value: data.email,
+        autocomplete: "email",
+        spellcheck: false,
+        errorMessage: email_error
+    }) }}
+
+    {{ govukInput({
+        label: {
+            text: "Full name"
+        },
+        id: "full-name",
+        name: "fullName",
+        value: data.fullName,
+        autocomplete: "name",
+        spellcheck: false,
+        errorMessage: name_error
+    }) }}
+
+    {{ govukRadios({
+        name: "subscribe",
+        errorMessage: subscribe_error,
+        value: data.subscribe,
+        fieldset: {
+            legend: {
+                text: "Do you wish to subcribe to our junk emails?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+            }
+        },
+        items: [
+            {
+                value: "yes",
+                text: "Yes"
+            },
+            {
+                value: "no",
+                text: "No"
+            }
+        ]
+    }) }}
+
+    {{ govukButton({
+        text: "Submit"
+    }) }}
+</form>
