@@ -11,12 +11,19 @@ import helmetSetup from './utils/helmetSetup.mjs';
 import setupCSP from './middleware/setupCSP.mjs';
 import config from './config.mjs';
 import indexRouter from './routes/index.mjs';
+import setupDB from './middleware/setupDB.mjs';
+import setupConfig from './middleware/setupConfigs.mjs';
+import bodyParser from 'body-parser';
+import csurf from 'csurf';
 
 // Get __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+//Set up DB to be used in requests
+setupDB(app)
 
 // Response compression
 app.use(compression({
@@ -36,6 +43,9 @@ setupCSP(app);
 // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
 helmetSetup(app);
 
+// csrfProtection setup
+const csrfProtection = csurf({ cookie: true });
+
 // Reducing fingerprinting
 app.disable('x-powered-by');
 
@@ -43,7 +53,9 @@ app.disable('x-powered-by');
 app.set('trust proxy', 1); // trust first proxy
 app.use(session({
   secret: 's3Cur3',
-  name: 'sessionId'
+  name: 'sessionId',
+  resave: false,
+  saveUninitialized: false
 }));
 
 // view engine setup
@@ -51,6 +63,12 @@ nunjucksSetup(app);
 
 // Apply the general rate limiter to all requests
 rateLimitSetUp(app, config);
+
+// Config in templates
+setupConfig(app)
+
+// bodyParser
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -60,7 +78,8 @@ app.use(cookieParser());
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+// Register routes
+app.use('/', csrfProtection, indexRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
