@@ -70,7 +70,7 @@ Within the skeleton you'll find a js file called `sqliteSetupup.js` under the ut
 
 Here is where you can initialise your database. Example below:
 
-```
+```sql
 db.serialize(() => {
 db.run("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)");
 db.run("INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com')");
@@ -81,7 +81,8 @@ db.run("INSERT INTO users (name, email) VALUES ('Jane Doe', 'jane@example.com')"
 Middleware `setupDB`, is set up to allow database queries to be run against your SQLite3.
 
 `setupDB` sets up db to access in any of your routes, such as this example below.
-```
+
+```mjs
 router.get('/users', (req, res, next) => {
   req.db.all("SELECT * FROM users", (err, rows) => {
     if (err) {
