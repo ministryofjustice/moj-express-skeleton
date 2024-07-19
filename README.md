@@ -45,6 +45,8 @@ This enables DEBUG, and you can type http://localhost:3000/ into your browser to
 ## Routing
 TODO
 
+https://expressjs.com/en/guide/routing.html
+
 ## Testing
 TODO
 
@@ -76,50 +78,79 @@ Please refer to the specific packages documentation for more details.
 ### Cache busting
 TODO
 
+- broswer caching stylings, so not need to refresh browser
+- hashes into the names of JS & CSS so we cna check the difference 
+- package mangagement tool that Imitaz will be implenting
+
 ### Form validation
 TODO
+
+- copy of stuff in Patrick PR
+- express has it's own documentation
 
 ### CSRF protection
 TODO
 
+- look in repo
+- has it's own documentatiom
+
 ### Content Security Policy (CSP)
 TODO
+
+- look at PAtrick PR
+- [helmet.js](https://helmetjs.github.io/)
 
 ### Response compression
 TODO
 
+- `import compression from 'compression';`
+
+
 ### Rate limiting
 TODO
+
+- check repo
 
 ### Nunjucks support
 TODO
 
+- link to nunjucks
+
 ### ES6 JSDocs
 TODO
+
+- link to docs
 
 ### Linter
 TODO
 
+- es lint
+- link to documentation 
+
 ### Security
 TODO
-
-- [helmet.js](https://helmetjs.github.io/)
-- [express-session](https://www.npmjs.com/package/express-session)
+- [express-session](https://www.npmjs.com/package/express-session) (cookie handling for browser session)
 
 ### Axios
 TODO
 
 ### SQLite database
 TODO
-
+- Check Patrick PR
 
 ## Contributers
-- [Patrick Sweeting](https://github.com/psweeting1) (Primary maintatiner)
-- [Imtiaz Ahmed](https://github.com/imtiazAhmd) (Primary maintatiner)
-- [Masum Khan](https://github.com/MazOneTwoOne) (Maintatiner)
-- [Stephanie de Jong](https://github.com/skdejong) (Maintatiner)
+- [Patrick Sweeting](https://github.com/psweeting1) (Primary maintainer)
+- [Imtiaz Ahmed](https://github.com/imtiazAhmd) (Primary maintainer)
+- [Masum Khan](https://github.com/MazOneTwoOne) (Maintainer)
+- [Stephanie de Jong](https://github.com/skdejong) (Maintainer)
 
 ## Support
 This software is provided *"as-is"* without warranty. Support is provided on a *"best endeavours"* basis by the maintainers and open source community.
 
 If you are a civil servant you can sign up to the [UK Government Digital Slack](https://ukgovernmentdigital.slack.com/signup) workspace to contact the maintainers listed [above](#contributers) and the community of people using this project in the [#govuk-design-system](https://ukgovernmentdigital.slack.com/archives/C6DMEH5R6) channel.
+
+
+## Crediting
+TODO
+
+give us credit
