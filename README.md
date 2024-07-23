@@ -43,18 +43,20 @@ DEBUG=moj-express-skeleton:* npm start
 This enables DEBUG, and you can type http://localhost:3000/ into your browser to access the app.
 
 ## Routing
-TODO
+This skeleton uses the built-in Express JS routing. 
 
-https://expressjs.com/en/guide/routing.html
+A route is a section of Express code that associates an HTTP verb (`GET`, `POST`, `PUT`, `DELETE`, etc.), a URL path/pattern, and a function that is called to handle that pattern.
+
+[You can find further documentaion here](https://expressjs.com/en/guide/routing.html).
 
 ## Testing
-TODO
+TODO - Patrick to supply info
 
 ### Unit testing
-TODO
+TODO - Patrick to supply info
 
 ### e2e testing
-TODO
+TODO - Patrick to supply info
 
 
 ## Features
