@@ -1,5 +1,7 @@
-# MOJ Express Skeleton
+# MOJ Express.js Skeleton
 ![govuk-frontend 5.4.0](https://img.shields.io/badge/govuk--frontend%20version-5.4.0-005EA5?logo=gov.uk&style=flat)
+
+Express.js is a fast, unopinionated, minimalist web framework for Node.js.
 
 **MOJ Express.js Skeleton is a community tool using the GOV.UK Design System. The Design System team is not responsible for it and cannot support you with using it. Contact the maintainers directly if you need help or you want to request a feature.**
 
@@ -50,13 +52,23 @@ A route is a section of Express code that associates an HTTP verb (`GET`, `POST`
 [You can find further documentaion here](https://expressjs.com/en/guide/routing.html).
 
 ## Testing
-TODO - Patrick to supply info
+There are many frameworks to test your Express.js application (a few of these frameworks will be signposted below), but you will want to split out your test suite to cover:
 
-### Unit testing
-TODO - Patrick to supply info
+- Unit Tests - test individual code components to ensure each function operates as intended.
+- Integration Tests - assess the coherence of the entire application, ensuring smooth interactions between various parts.
+- End-to-end (E2E) Tests - assess the entire software system, from the user interface to the database.
 
-### e2e testing
-TODO - Patrick to supply info
+### Unit/Integration Testing example frameworks
+- Choose a testing framework (e.g., [Mocha](https://mochajs.org/), [Jest](https://jestjs.io/)).
+- Write test cases for individual functions and combined modules.
+- Mock dependencies (e.g., databases, external services).
+- Run tests and check outputs against expected results.
+
+### E2E Testing example frameworks
+- Choose an E2E testing tool (e.g., [Cypress](https://www.cypress.io/), [Selenium](https://medium.com/@mpgelber7495/a-step-by-step-guide-to-setting-up-selenium-webdriver-with-node-js-1167bca35c38)).
+- Write test scripts simulating user interactions.
+- Set up a test environment mirroring production.
+- Run tests and verify overall application behaviour.
 
 
 ## Features
@@ -78,11 +90,9 @@ TODO - Patrick to supply info
 Please refer to the specific packages documentation for more details.
 
 ### Cache busting
-TODO
-
-- broswer caching stylings, so not need to refresh browser
-- hashes into the names of JS & CSS so we cna check the difference 
-- package mangagement tool that Imitaz will be implenting
+Caching allows Express.js applications to store and serve frequently requested data efficiently, reducing the strain on servers and minimizing latency. This skeleton improves caching through:
+- intelligent browser caching, when using the skeleton for development of an application
+- employing a package management tool, to improve the caching process of installing, upgrading, configuring, and removing software from your application
 
 ### Form validation
 TODO
@@ -110,9 +120,10 @@ TODO
 
 
 ### Rate limiting
-TODO
+This skeleton uses a basic rate-limiting middleware for Express.js, called `express-rate-limit`. It is used to limit repeated requests to public APIs and/or endpoints such as password reset. 
 
-- check repo
+For further information please [visit the documentaion here](https://www.npmjs.com/package/express-rate-limit?activeTab=readme).
+
 
 ### Nunjucks support
 TODO
@@ -125,17 +136,58 @@ TODO
 - link to docs
 
 ### Linter
-TODO
+ESLint is a static code analysis tool for identifying and fixing problems in JavaScript code. It helps maintain code 
+quality and consistency across a project by enforcing a set of coding standards and best practices. ESLint can catch 
+syntax errors, stylistic issues, and potential bugs before they become actual problems.
 
-- es lint
-- link to documentation 
+In this project, ESLint is configured using the `eslint.config.js` file. This file uses the new flat configuration format 
+introduced in ESLint v8, allowing for a more modular and flexible setup. Alter and configure this file to meet your 
+project needs.
+
+To run ESlint:
+
+`npx eslint .`
+
+To apply fixes that ESLint has found
+
+`npx eslint . --fix`
 
 ### Security
 TODO
 - [express-session](https://www.npmjs.com/package/express-session) (cookie handling for browser session)
 
 ### Axios
-TODO
+Within this skeleton [axios](https://github.com/axios/axios) with [middleware-axios](https://github.com/krutoo/middleware-axios) (used as a utility `../utils/axiosSetp.mjs`, and can be extended with further middleware) is set up and ready to use out of the box.
+
+Below is an example of implementation of how to use the `axios_api` function, in other modules to make server/api calls:
+
+```mjs
+// routes/index.mjs
+import express from 'express';
+
+const router = express.Router();
+
+/* GET home page. */
+router.get('/', (req, res, next) => {
+  res.render('main/index', { title: 'Express' });
+});
+
+// Make an API call with `Axios` and `middleware-axios`
+// GET users from external API
+router.get('/users', async (req, res, next) => {
+psweeting1 marked this conversation as resolved.
+  try {
+      // Use the Axios instance attached to the request object
+      const response = await req.axiosMiddleware.get('https://jsonplaceholder.typicode.com/users');
+      res.json(response.data);
+  } catch (error) {
+      next(error);
+  }
+});
+
+export default router;
+```
+
 
 ### SQLite database
 
