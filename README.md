@@ -95,9 +95,12 @@ Caching allows Express.js applications to store and serve frequently requested d
 - employing a package management tool, to improve the caching process of installing, upgrading, configuring, and removing software from your application
 
 ### Form validation
-TODO
 
-- copy of stuff in Patrick PR
+
+We have an example of how to
+
+https://www.npmjs.com/package/express-validator
+
 - express has it's own documentation
 
 ### CSRF protection
