@@ -89,6 +89,9 @@ There are many frameworks to test your Express.js application (a few of these fr
 ## Examples of features 
 Please refer to the specific packages documentation for more details.
 
+### Asset management
+This is node.js scripts at them moment, but [ESBuild](https://esbuild.github.io/) coming soon.
+
 ### Cache busting
 Caching allows Express.js applications to store and serve frequently requested data efficiently, reducing the strain on servers and minimizing latency. This skeleton improves caching through:
 - intelligent browser caching, when using the skeleton for development of an application
@@ -236,25 +239,13 @@ This software is provided *"as-is"* without warranty. Support is provided on a *
 If you are a civil servant you can sign up to the [UK Government Digital Slack](https://ukgovernmentdigital.slack.com/signup) workspace to contact the maintainers listed [above](#contributers) and the community of people using this project in the [#govuk-design-system](https://ukgovernmentdigital.slack.com/archives/C6DMEH5R6) channel.
 
 
-## Crediting
-TODO
+## Acknowledgment and Attribution
+If you find this project helpful and decide to use it in your own work, we kindly ask that you give proper credit to this repository. A simple acknowledgment in your project's documentation, website, or application would be greatly appreciated. Here are a few ways you can do this:
+- **Link back to this repository**: Include a link to this GitHub repository in your project's documentation or README file.
+- **Mention our contribution**: When discussing your project or presenting it to others, please mention that part of your project is based on our work.
+- **Cite our work**: If your project includes a list of contributors or a "Credits" section, consider adding our repository as one of the sources.
 
-give us credit
-
-### Linting
-
-ESLint is a static code analysis tool for identifying and fixing problems in JavaScript code. It helps maintain code 
-quality and consistency across a project by enforcing a set of coding standards and best practices. ESLint can catch 
-syntax errors, stylistic issues, and potential bugs before they become actual problems.
-
-In this project, ESLint is configured using the `eslint.config.js` file. This file uses the new flat configuration format 
-introduced in ESLint v8, allowing for a more modular and flexible setup. Alter and configure this file to meet your 
-project needs.
-
-To run ESlint:
-
-`npx eslint .`
-
-To apply fixes that ESLint has found
-
-`npx eslint . --fix`
+```
+This project uses code from [Your Repository Name](https://github.com/yourusername/your-repository), originally developed by [Your Name or Organization].
+```
+Thank you for your support and for helping to spread the word about our work!
