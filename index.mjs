@@ -1,5 +1,5 @@
-import createApp from './app.mjs'
+import createApp from './app.mjs';
 
-const app = createApp()
+const app = createApp();
 
-export default app
+export default app;
