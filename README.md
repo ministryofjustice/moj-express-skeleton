@@ -10,7 +10,8 @@ cp .env.example .env
 ```
 
 Install and run application
-```
+
+```shell
 npm install
 npm run dev
 ```
@@ -28,6 +29,38 @@ Then, load http://localhost:3000/ in your browser to access the app.
 - [helmet.js](https://helmetjs.github.io/)
 - [express-session](https://www.npmjs.com/package/express-session)
 
+## Axios
+
+Within this skeleton [axios](https://github.com/axios/axios) with [middleware-axios](https://github.com/krutoo/middleware-axios) (used a utility `../utils/axiosSetp.mjs` and can be extended with further middleware) is set up and ready to use out of the box.
+
+Below is an example of implementation of how to use the `axios_api` function, in other modules to make server/api calls:
+
+```mjs
+// routes/index.mjs
+import express from 'express';
+
+const router = express.Router();
+
+/* GET home page. */
+router.get('/', (req, res, next) => {
+  res.render('main/index', { title: 'Express' });
+});
+
+// Make an API call with `Axios` and `middleware-axios`
+// GET users from external API
+router.get('/users', async (req, res, next) => {
+  try {
+      // Use the Axios instance attached to the request object
+      const response = await req.axiosMiddleware.get('https://jsonplaceholder.typicode.com/users');
+      res.json(response.data);
+  } catch (error) {
+      next(error);
+  }
+});
+
+export default router;
+```
+
 ### Skeleton Database
 
 Within this skeleton [SQLite3](https://docs.python.org/3/library/sqlite3.html) is set up and ready to use out of the box. However, if you wish to use something
@@ -37,7 +70,7 @@ Within the skeleton you'll find a js file called `sqliteSetupup.js` under the ut
 
 Here is where you can initialise your database. Example below:
 
-```
+```sql
 db.serialize(() => {
 db.run("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)");
 db.run("INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com')");
@@ -48,7 +81,8 @@ db.run("INSERT INTO users (name, email) VALUES ('Jane Doe', 'jane@example.com')"
 Middleware `setupDB`, is set up to allow database queries to be run against your SQLite3.
 
 `setupDB` sets up db to access in any of your routes, such as this example below.
-```
+
+```mjs
 router.get('/users', (req, res, next) => {
   req.db.all("SELECT * FROM users", (err, rows) => {
     if (err) {
