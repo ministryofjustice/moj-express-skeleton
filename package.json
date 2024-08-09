@@ -22,6 +22,7 @@
     "csurf": "^1.11.0",
     "debug": "~2.6.9",
     "dotenv": "^16.4.5",
+    "eslint-plugin-jsdoc": "^48.7.0",
     "express": "^4.19.2",
     "express-rate-limit": "^7.3.1",
     "express-session": "^1.18.0",
@@ -35,6 +36,9 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@eslint/js": "^9.7.0",
+    "eslint": "^9.7.0",
+    "globals": "^15.8.0",
     "nodemon": "^3.1.3"
   }
 }

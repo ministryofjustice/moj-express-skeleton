@@ -59,3 +59,21 @@ router.get('/users', (req, res, next) => {
   });
 });
 ```
+
+### Linting
+
+ESLint is a static code analysis tool for identifying and fixing problems in JavaScript code. It helps maintain code 
+quality and consistency across a project by enforcing a set of coding standards and best practices. ESLint can catch 
+syntax errors, stylistic issues, and potential bugs before they become actual problems.
+
+In this project, ESLint is configured using the `eslint.config.js` file. This file uses the new flat configuration format 
+introduced in ESLint v8, allowing for a more modular and flexible setup. Alter and configure this file to meet your 
+project needs.
+
+To run ESlint:
+
+`npx eslint .`
+
+To apply fixes that ESLint has found
+
+`npx eslint . --fix`
