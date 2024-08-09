@@ -31,6 +31,11 @@ setupDB(app)
 
 // Response compression
 app.use(compression({
+  /**
+   *
+   * @param req
+   * @param res
+   */
   filter: (req, res) => {
     if (req.headers['x-no-compression']) {
       // Don't compress responses with this request header
