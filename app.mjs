@@ -11,10 +11,12 @@ import helmetSetup from './utils/helmetSetup.mjs';
 import setupCSP from './middleware/setupCSP.mjs';
 import config from './config.mjs';
 import indexRouter from './routes/index.mjs';
+import axiosMiddleware from './utils/axiosSetp.mjs';
 import setupDB from './middleware/setupDB.mjs';
 import setupConfig from './middleware/setupConfigs.mjs';
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
+
 
 // Get __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
@@ -22,11 +24,18 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+app.use(axiosMiddleware);
+
 //Set up DB to be used in requests
 setupDB(app)
 
 // Response compression
 app.use(compression({
+  /**
+   *
+   * @param req
+   * @param res
+   */
   filter: (req, res) => {
     if (req.headers['x-no-compression']) {
       // Don't compress responses with this request header
