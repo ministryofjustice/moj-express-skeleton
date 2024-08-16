@@ -4,6 +4,8 @@ $app-light-grey: #f8f8f8;
 .app-masthead {
   @include govuk-responsive-padding(6, "top");
   @include govuk-responsive-padding(6, "bottom");
+  @include govuk-responsive-padding(6, "left");
+  @include govuk-responsive-padding(6, "right");
   border-bottom: 10px solid govuk-colour("blue");
   color: govuk-colour("white");
   background-color: govuk-colour("blue");
@@ -38,6 +40,8 @@ $app-light-grey: #f8f8f8;
 }
 
 .app-light-grey {
+  @include govuk-responsive-padding(6, "left");
+  @include govuk-responsive-padding(6, "right");
   border-bottom: 1px solid $govuk-border-colour;
   background-color: $app-light-grey;
 }
