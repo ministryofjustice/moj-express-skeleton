@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "node bin/www.mjs --input-type=module",
-    "dev": "nodemon bin/www.mjs & npm run scss & npm run js & npm run assets",
+    "dev": "nodemon bin/www.mjs & npm run scss & npm run js & npm run assets & npm run concat-js",
     "scss": "sass --watch src/scss/main.scss public/stylesheets/application.min.css --style=compressed",
     "js": "cp -R node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js* public/javascripts",
+    "concat-js": "concat -o public/javascripts/app.js src/js/cookie-banner.mjs src/js/custom.mjs",
     "assets": "cp -R node_modules/govuk-frontend/dist/govuk/assets/ public/assets"
   },
   "engines": {
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.7.0",
+    "concat-cli": "^4.0.0",
     "eslint": "^9.7.0",
     "globals": "^15.8.0",
     "nodemon": "^3.1.3"

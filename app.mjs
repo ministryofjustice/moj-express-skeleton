@@ -15,6 +15,7 @@ import setupDB from './middleware/setupDB.mjs';
 import setupConfig from './middleware/setupConfigs.mjs';
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
+import manageCookiePolicy from "./middleware/manageCookiePolicy.mjs";
 
 // Get __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
@@ -79,6 +80,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//cookie policy check
+manageCookiePolicy(app)
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));

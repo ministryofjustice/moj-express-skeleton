@@ -4,19 +4,19 @@
  * Check if the cookies policy is already set.
  * @returns {boolean} True if the cookies policy is set, false otherwise.
  */
-export function isCookiesPolicySet() {
+export const isCookiesPolicySet = () => {
   return document.cookie
-    .split(';')
-    .some((item) => item.trim().startsWith('cookies_policy='));
-}
+      .split(';')
+      .some((item) => item.trim().startsWith('cookies_policy='));
+};
 
 /**
- * Set the cookies policy.
+ * Set the cookie's policy.
  * @param {object} policy - The policy object.
  * @param {string} policy.analytics - The analytics cookie policy.
  * @param {string} policy.functional - The functional cookie policy.
  */
-export function setCookiesPolicy(policy) {
+export const setCookiesPolicy = (policy) => {
   document.cookie = `cookies_policy=${JSON.stringify(policy)}; max-age=31557600; path=/; secure; samesite=lax`;
 }
 
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setCookiesPolicy({ analytics: 'yes', functional: 'yes' });
       defaultMessage.hidden = true;
       acceptedMessage.hidden = false;
-      cookieBanner.hidden = true;
+      cookieBanner.hidden = false;
     };
 
     /**
