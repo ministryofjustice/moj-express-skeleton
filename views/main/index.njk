@@ -62,31 +62,7 @@
     <div class="govuk-width-container">
         <div class="govuk-main-wrapper govuk-main-wrapper--l">
             <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-third-from-desktop govuk-!-margin-bottom-8">
-                    <h2 class="govuk-heading-l govuk-!-font-weight-bold">Styles</h2>
-                    <p class="govuk-body">You can use these GOV.UK Design System components in the user interface of your project. These components are pre-built, core elements which allow government teams to build consistent services.</p>
-                    <p class="govuk-body govuk-!-margin-bottom-0"><a href="https://design-system.service.gov.uk/components/" class="govuk-link govuk-!-font-weight-bold">GDS Components</a></p>
-                </div>
-                <div class="govuk-grid-column-one-third-from-desktop govuk-!-margin-bottom-8">
-                    <h2 class="govuk-heading-l">Nunjuck</h2>
-                    <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices leo
-                        nec vestibulum pulvinar. Nunc faucibus dui nisi, dapibus ultricies mauris maximus
-                        id.</p>
-                    <p class="govuk-body govuk-!-margin-bottom-0"><a href="/components/" class="govuk-link govuk-!-font-weight-bold">Browse components</a></p>
-                </div>
-                <div class="govuk-grid-column-one-third-from-desktop govuk-!-margin-bottom-8">
-                    <h2 class="govuk-heading-l">Secure</h2>
-                    <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices leo
-                        nec vestibulum pulvinar. Nunc faucibus dui nisi, dapibus ultricies mauris maximus
-                        id.</p>
-                    <p class="govuk-body govuk-!-margin-bottom-0"><a href="/patterns/" class="govuk-link govuk-!-font-weight-bold">Browse patterns</a></p>
-                </div>
-
-                <div class="govuk-grid-column-full">
-                    <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl govuk-!-margin-top-0">
-                </div>
-
-                <div class="govuk-grid-column-two-thirds">
+                <div class="govuk-grid-column-full govuk-!-margin-bottom-6">
                     <h2 class="govuk-heading-l">Why use this Express skeleton?</h2>
                     <p class="govuk-body">
                         The MOJ Express.js Skeleton is a template app which is designed to help with getting a new project started quicker. This community tool uses the GOV.UK Frontend and GOV.UK Design System.
@@ -100,14 +76,36 @@
                 </div>
 
                 <div class="govuk-grid-column-full">
+                    <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl govuk-!-margin-top-0">
+                </div>
+                <div>
+                    <div class="govuk-grid-column-one-third-from-desktop">
+                        <h2 class="govuk-heading-l govuk-!-font-weight-bold">Styles</h2>
+                        <p class="govuk-body govuk-!-margin-bottom-8">You can use these GOV.UK Design System components in the user interface of your project. These components are pre-built, core elements which allow government teams to build consistent services.</p>
+                        <p class="govuk-body"><a href="https://design-system.service.gov.uk/components/" class="govuk-link govuk-!-font-weight-bold">GDS Components</a></p>
+                    </div>
+                    <div class="govuk-grid-column-one-third-from-desktop">
+                        <h2 class="govuk-heading-l">Nunjucks</h2>
+                        <p class="govuk-body govuk-!-margin-bottom-8">
+                            The template app uses Nunjucks. It's a high-performance JavaScript templating language, supported by all modern browsers. Nunjucks is customisable with extensions and filters. 
+                        </p>
+                        <p class="govuk-body"><a href="https://mozilla.github.io/nunjucks/" class="govuk-link govuk-!-font-weight-bold">Nunjucks documentation</a></p>
+                    </div>
+                    <div class="govuk-grid-column-one-third-from-desktop">
+                        <h2 class="govuk-heading-l">Secure</h2>
+                        <p class="govuk-body govuk-!-margin-bottom-8">
+                            This template app has been designed to have the bare essentials to keep your app secure.
+                            We've done this by including, Cross-Site Request Forgery (CRSF) protection and a Content Security Policy (CSP).
+                        </p>
+                        <p class="govuk-body"><a href="https://github.com/ministryofjustice/moj-express-skeleton/blob/main/README.md" class="govuk-link govuk-!-font-weight-bold">View our documentation</a></p>
+                    </div>
+                </div>
+                <div class="govuk-grid-column-full">
                     <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--xl">
                 </div>
 
                 <div class="govuk-grid-column-two-thirds-from-desktop">
                     <h2 id="demos" class="govuk-heading-l">Demos</h2>
-                    <p class="govuk-body">
-                        See working examples of this skeleton and how you can set it up and use it.
-                    </p>
                     {% include "./_form-example.njk" %}
                 </div>
 
