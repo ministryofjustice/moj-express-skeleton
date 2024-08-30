@@ -82,7 +82,6 @@ There are many frameworks to test your Express.js application (a few of these fr
 - [Nunjucks support](#nunjucks-support)
 - [ES6 JS Documentation](#es6-js-documentation)
 - [Linter](#linter)
-- [Security](#security)
 - [Axios](#axios)
 - [SQLite database](#sqlite-database)
 
@@ -143,10 +142,6 @@ To run ESlint:
 To apply fixes that ESLint has found
 
 `npx eslint . --fix`
-
-### Security
-TODO
-- [express-session](https://www.npmjs.com/package/express-session) (cookie handling for browser session)
 
 ### Axios
 Within this skeleton [axios](https://github.com/axios/axios) with [middleware-axios](https://github.com/krutoo/middleware-axios) (used as a utility `../utils/axiosSetup.mjs`, and can be extended with further middleware) is set up and ready to use out of the box.
