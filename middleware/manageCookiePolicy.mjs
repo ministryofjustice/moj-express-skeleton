@@ -1,8 +1,19 @@
 /**
- * Middleware to check if the cookie policy has been set via a JS cookie.
- * If set, it stores the policy in the session.
+ * Middleware to manage the cookie policy for an Express application.
+ * This middleware checks if the `cookies_policy` cookie is set and valid,
+ * and then sets a corresponding `cookies_policy` flag in `res.locals` for use in templates.
+ *
+ * @param {Object} app - The Express application instance.
  */
 const manageCookiePolicy = (app) => {
+    /**
+     * Middleware function to check if the cookie policy is set.
+     * It verifies the existence and validity of the `cookies_policy` cookie.
+     *
+     * @param {Object} req - The Express request object.
+     * @param {Object} res - The Express response object.
+     * @param {Function} next - The next middleware function in the stack.
+     */
     const checkCookiePolicySet = (req, res, next) => {
         const cookiesPolicy = req.cookies.cookies_policy;
 
