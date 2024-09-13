@@ -8,13 +8,14 @@
     "start": "node bin/www.mjs --input-type=module",
     "dev": "nodemon bin/www.mjs & npm run scss & npm run js & npm run assets",
     "scss": "sass --watch src/scss/main.scss public/stylesheets/application.min.css --style=compressed",
-    "js": "cp -R node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js* public/javascripts",
-    "assets": "cp -R node_modules/govuk-frontend/dist/govuk/assets/ public/assets"
+    "js": "cp -R node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js* public/javascripts && cp -R node_modules/@ministryofjustice/frontend/moj/all.js public/javascripts",
+    "assets": "cp -R node_modules/govuk-frontend/dist/govuk/assets/ public/assets && cp -R node_modules/@ministryofjustice/frontend/moj/all.scss public/assets"
   },
   "engines": {
     "node": "20.15.1"
   },
   "dependencies": {
+    "@ministryofjustice/frontend": "^2.2.0",
     "axios": "^1.7.2",
     "body-parser": "^1.20.2",
     "chokidar": "^3.6.0",
@@ -37,10 +38,10 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "middleware-axios": "^2.1.6",
     "@eslint/js": "^9.7.0",
     "eslint": "^9.7.0",
     "globals": "^15.8.0",
+    "middleware-axios": "^2.1.6",
     "nodemon": "^3.1.3"
   }
 }
