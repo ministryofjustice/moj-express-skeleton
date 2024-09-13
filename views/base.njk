@@ -61,7 +61,9 @@
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
   <script type="module" nonce="{{ cspNonce }}" src="/javascripts/govuk-frontend.min.js"></script>
   <script type="module" nonce="{{ cspNonce }}">
-    import { initAll } from '/javascripts/govuk-frontend.min.js'
-    initAll()
+    import { initAll as GOVUKFrontendInitAll } from '/javascripts/govuk-frontend.min.js'
+    import { initAll as MOJFrontendInitAll } from '/javascripts/all.js'
+    GOVUKFrontendInitAll()
   </script>
+
 {% endblock %}
