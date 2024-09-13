@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "axios": "^1.7.2",
-    "body-parser": "^1.20.2",
+    "body-parser": "^1.20.3",
     "chokidar": "^3.6.0",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
@@ -24,7 +24,7 @@
     "debug": "~2.6.9",
     "dotenv": "^16.4.5",
     "eslint-plugin-jsdoc": "^48.7.0",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "express-rate-limit": "^7.3.1",
     "express-session": "^1.18.0",
     "express-validator": "^7.1.0",
