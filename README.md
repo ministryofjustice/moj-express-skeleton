@@ -49,7 +49,7 @@ This skeleton uses the built-in Express JS routing.
 
 A route is a section of Express code that associates an HTTP verb (`GET`, `POST`, `PUT`, `DELETE`, etc.), a URL path/pattern, and a function that is called to handle that pattern.
 
-[You can find further documentaion here](https://expressjs.com/en/guide/routing.html).
+[You can find further documentation here](https://expressjs.com/en/guide/routing.html).
 
 ## Testing
 There are many frameworks to test your Express.js application (a few of these frameworks will be signposted below), but you will want to split out your test suite to cover:
@@ -80,9 +80,8 @@ There are many frameworks to test your Express.js application (a few of these fr
 - [Response compression](#response-compression)
 - [Rate limiting](#rate-limiting)
 - [Nunjucks support](#nunjucks-support)
-- [ES6 JSDocs](#es6-jsdocs)
+- [ES6 JS Documentation](#es6-js-documentation)
 - [Linter](#linter)
-- [Security](#security)
 - [Axios](#axios)
 - [SQLite database](#sqlite-database)
 
@@ -98,48 +97,34 @@ Caching allows Express.js applications to store and serve frequently requested d
 - employing a package management tool, to improve the caching process of installing, upgrading, configuring, and removing software from your application
 
 ### Form validation
+This template app contains a basic demo for form validation, when running this app locally. You can find further information on the validation used, by searching in the [Express documentation](https://www.npmjs.com/package/express-validator)
 
-
-We have an example of how to
-
-https://www.npmjs.com/package/express-validator
-
-- express has it's own documentation
 
 ### CSRF protection
-TODO
-
-- look in repo
-- has it's own documentatiom
+The template use the [csurf](https://npmjs.com/package/csurf) middleware, to help keep your app secure.
 
 ### Content Security Policy (CSP)
-TODO
-
-- look at PAtrick PR
-- [helmet.js](https://helmetjs.github.io/)
-
+This app uses [helmet.js](https://helmetjs.github.io/) to help secure this Express.js template app by setting HTTP response headers, which includes your CSP. 
 
 ### Response compression
-TODO
-
-- `import compression from 'compression';`
+The app uses a Node.js compression middleware called [compression](https://www.npmjs.com/package/compression). The middleware will attempt to compress response bodies for all request that traverse through the middleware, based on the given options.
 
 
 ### Rate limiting
 This skeleton uses a basic rate-limiting middleware for Express.js, called `express-rate-limit`. It is used to limit repeated requests to public APIs and/or endpoints such as password reset. 
 
-For further information please [visit the documentaion here](https://www.npmjs.com/package/express-rate-limit?activeTab=readme).
+For further information please [visit the documentation here](https://www.npmjs.com/package/express-rate-limit?activeTab=readme).
 
 
 ### Nunjucks support
-TODO
+A rich, high-performance JavaScript templating language, supported by all modern browsers. Nunjucks is customisable with extensions and filters; it offers inheritance, asynchronous control, auto escaping and other features. 
 
-- link to nunjucks
+[Nunjucks documentation](https://mozilla.github.io/nunjucks/).
 
-### ES6 JSDocs
-TODO
+### ES6 JS Documentation
+ES6 refers to version 6 of the ECMA Script programming language. ECMA Script is the standardized name for JavaScript, and version 6 is the next version after version 5, released in 2011. It is a significant enhancement to the JavaScript language and adds many more features to simplify large-scale software development.
 
-- link to docs
+Find out more [here](https://www.makeuseof.com/tag/es6-javascript-programmers-need-know/).
 
 ### Linter
 ESLint is a static code analysis tool for identifying and fixing problems in JavaScript code. It helps maintain code 
@@ -158,12 +143,8 @@ To apply fixes that ESLint has found
 
 `npx eslint . --fix`
 
-### Security
-TODO
-- [express-session](https://www.npmjs.com/package/express-session) (cookie handling for browser session)
-
 ### Axios
-Within this skeleton [axios](https://github.com/axios/axios) with [middleware-axios](https://github.com/krutoo/middleware-axios) (used as a utility `../utils/axiosSetp.mjs`, and can be extended with further middleware) is set up and ready to use out of the box.
+Within this skeleton [axios](https://github.com/axios/axios) with [middleware-axios](https://github.com/krutoo/middleware-axios) (used as a utility `../utils/axiosSetup.mjs`, and can be extended with further middleware) is set up and ready to use out of the box.
 
 Below is an example of implementation of how to use the `axios_api` function, in other modules to make server/api calls:
 
@@ -199,7 +180,7 @@ export default router;
 Within this skeleton [SQLite3](https://docs.python.org/3/library/sqlite3.html) is set up and ready to use out of the box. However, if you wish to use something
 else as your database, please see [Database integration Options](https://expressjs.com/en/guide/database-integration.html).
 
-Within the skeleton you'll find a js file called `sqliteSetupup.js` under the utils directory.
+Within the skeleton you'll find a js file called `sqliteSetup.js` under the utils directory.
 
 Here is where you can initialise your database. Example below:
 
@@ -227,7 +208,7 @@ router.get('/users', (req, res, next) => {
 });
 ```
 
-## Contributers
+## Contributors
 - [Patrick Sweeting](https://github.com/psweeting1) (Primary maintainer)
 - [Imtiaz Ahmed](https://github.com/imtiazAhmd) (Primary maintainer)
 - [Masum Khan](https://github.com/MazOneTwoOne) (Maintainer)
@@ -236,7 +217,7 @@ router.get('/users', (req, res, next) => {
 ## Support
 This software is provided *"as-is"* without warranty. Support is provided on a *"best endeavours"* basis by the maintainers and open source community.
 
-If you are a civil servant you can sign up to the [UK Government Digital Slack](https://ukgovernmentdigital.slack.com/signup) workspace to contact the maintainers listed [above](#contributers) and the community of people using this project in the [#govuk-design-system](https://ukgovernmentdigital.slack.com/archives/C6DMEH5R6) channel.
+If you are a civil servant you can sign up to the [UK Government Digital Slack](https://ukgovernmentdigital.slack.com/signup) workspace to contact the maintainers listed [above](#contributors) and the community of people using this project in the [#govuk-design-system](https://ukgovernmentdigital.slack.com/archives/C6DMEH5R6) channel.
 
 
 ## Acknowledgment and Attribution
