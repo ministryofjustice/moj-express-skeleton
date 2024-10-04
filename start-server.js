@@ -3,7 +3,7 @@ import livereload from 'livereload'; // Import livereload for live reloading
 import path from 'path'; // Import path module for handling file paths
 import { fileURLToPath } from 'url'; // Import fileURLToPath to convert file URLs to paths
 import { spawn } from 'child_process'; // Import spawn from child_process to spawn new processes
-import config from './config.js'; // Import the config
+import config from './config.mjs'; // Import the config
 import { build } from './esbuild.js'; // Import the build function
 
 // Get the directory name
@@ -24,7 +24,7 @@ const startServer = (port) => {
   // Add a delay to ensure the port is released before starting a new server process
   setTimeout(() => {
     // Spawn a new server process
-    serverProcess = spawn('node', ['public/app.js'], {
+    serverProcess = spawn('node', ['public/js/app.js'], {
       stdio: 'inherit', // Inherit stdio to display server logs in the console
       env: { ...process.env, PORT: port } // Pass the environment variables, including the port
     });
