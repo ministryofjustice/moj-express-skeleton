@@ -24,7 +24,7 @@ const startServer = (port) => {
   // Add a delay to ensure the port is released before starting a new server process
   setTimeout(() => {
     // Spawn a new server process
-    serverProcess = spawn('node', ['public/app.js'], {
+    serverProcess = spawn('node', ['public/js/app.js'], {
       stdio: 'inherit', // Inherit stdio to display server logs in the console
       env: { ...process.env, PORT: port } // Pass the environment variables, including the port
     });

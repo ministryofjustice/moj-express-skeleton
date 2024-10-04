@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import { copy } from 'esbuild-plugin-copy';
 import fs from 'fs-extra';
 import path from 'path';
-import config from './config.js'; // Import the config
+import config from './config.mjs'; // Import the config
 
 // Load environment variables from .env file
 dotenv.config();
@@ -54,11 +54,9 @@ const build = async () => {
                     transform: (source) => {
                         return source
                             // Replace $govuk-assets-path references for fonts
-                            .replace(/url\(["']?\/assets\/fonts\/([^"'\)]+)["']?\)/g,
-                                'url("../../node_modules/govuk-frontend/dist/govuk/assets/fonts/$1")')
+                            .replace(/url\(["']?\/assets\/fonts\/([^"'\)]+)["']?\)/g, 'url("./assets/fonts/$1")')
                             // Replace $govuk-assets-path references for images
-                            .replace(/url\(["']?\/assets\/images\/([^"'\)]+)["']?\)/g,
-                                'url("../../node_modules/govuk-frontend/dist/govuk/assets/images/$1")');
+                            .replace(/url\(["']?\/assets\/images\/([^"'\)]+)["']?\)/g, 'url("./assets/images/$1")');
                     }
                 })
             ],
@@ -76,27 +74,21 @@ const build = async () => {
 
         // Bundle JS (even though we don't have custom JS for now, it's ready)
         const jsBuildOptions = {
-            entryPoints: ['src/app.js'],
+            entryPoints: ['src/app.mjs'],
             bundle: true,
             platform: 'node',
-            target: 'es2020',
+            target: 'es2017',
             format: 'esm', // Set format to ES Module
-            outdir: 'public/',
+            outdir: 'public/js',
             sourcemap: true,
             minify: true, // Minify JS
             external: externalModules, // Use dynamically generated list of external modules
             plugins: [
                 copy({
-                    assets: [
-                        {
-                            from: './node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js',
-                            to: './js/govuk-frontend.min.js'
-                        },
-                        {
-                            from: './node_modules/govuk-frontend/dist/govuk/assets/',
-                            to: './assets'
-                        }
-                    ]
+                    assets: {
+                        from: ['./node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js'],
+                        to: ['./govuk-frontend.min.js']
+                    }
                 })
             ]
         };
