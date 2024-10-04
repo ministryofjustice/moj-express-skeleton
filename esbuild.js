@@ -43,7 +43,7 @@ const build = async () => {
         const scssBuildOptions = {
             entryPoints: ['src/scss/main.scss'],
             bundle: true,
-            outdir: 'public/css',
+            outdir: 'public/stylesheets',
             plugins: [
                 sassPlugin({
                     resolveDir: path.resolve('src/scss'),
@@ -77,7 +77,7 @@ const build = async () => {
             entryPoints: ['src/app.js'],
             bundle: true,
             platform: 'node',
-            target: 'es2017',
+            target: 'es2020',
             format: 'esm', // Set format to ES Module
             outdir: 'public/js',
             sourcemap: true,

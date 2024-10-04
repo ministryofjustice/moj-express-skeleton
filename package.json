@@ -31,7 +31,7 @@
     "esbuild-plugin-copy": "^2.1.1",
     "esbuild-sass-plugin": "^3.3.1",
     "eslint-plugin-jsdoc": "^48.7.0",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "express-rate-limit": "^7.3.1",
     "express-session": "^1.18.0",
     "express-validator": "^7.1.0",

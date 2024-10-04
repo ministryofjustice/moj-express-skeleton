@@ -2,21 +2,26 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
-import logger from 'morgan';
 import session from 'express-session';
-// import compression from 'compression';
 import nunjucksSetup from '../utils/nunjucksSetup';
 import rateLimitSetUp from '../utils/rateLimitSetUp';
+import { createRequire } from 'module';
 import helmetSetup from '../utils/helmetSetup';
 import setupCSP from '../middleware/setupCSP';
 import config from '../config';
 import indexRouter from '../routes/index';
-// import axiosMiddleware from '../utils/axiosSetp';
+// import compression from 'compression';
+// import axiosMiddleware from '../utils/axiosSetup';
 // import setupDB from '../middleware/setupDB';
 import setupConfig from '../middleware/setupConfigs';
 import bodyParser from 'body-parser';
-import csurf from 'csurf';
 import livereload from 'connect-livereload';
+
+const require = createRequire(import.meta.url);
+
+
+const csurf = require('csurf');
+const logger = require('morgan');
 
 
 // Get __dirname equivalent
@@ -28,7 +33,7 @@ const app = express();
 // app.use(axiosMiddleware);
 
 //Set up DB to be used in requests
-//setupDB(app)
+// setupDB(app)
 
 // Response compression
 // app.use(compression({
@@ -48,10 +53,10 @@ const app = express();
 // }));
 
 // Middleware function to set up a Content Security Policy (CSP) nonce for each request.
-// setupCSP(app);
+setupCSP(app);
 
 // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
-// helmetSetup(app);
+helmetSetup(app);
 
 // csrfProtection setup
 const csrfProtection = csurf({ cookie: true });
@@ -89,7 +94,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Register routes
-app.use('/', indexRouter);
+app.use('/',csrfProtection, indexRouter);
 
 // // catch 404 and forward to error handler
 // app.use((req, res, next) => {
