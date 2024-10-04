@@ -2,12 +2,13 @@
   "name": "moj-express-skeleton",
   "version": "0.0.0",
   "private": true,
-  "main": "index.mjs",
+  "main": "public/js/app.js",
   "type": "module",
   "scripts": {
-    "start": "node start-server.js",
+    "start": "node public/js/app.js",
     "build": "node esbuild.js",
     "dev": "nodemon --watch src & npm run scss & npm run js & npm run assets && node start-server.js",
+    "dev-new": "nodemon --watch src --ext js,scss --exec 'node start-server.js'",
     "scss": "sass --watch src/scss/main.scss public/stylesheets/application.min.css --style=compressed",
     "js": "cp -R node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js* public/javascripts",
     "assets": "cp -R node_modules/govuk-frontend/dist/govuk/assets/ public/assets"

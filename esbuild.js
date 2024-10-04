@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import { copy } from 'esbuild-plugin-copy';
 import fs from 'fs-extra';
 import path from 'path';
-import config from './config.mjs'; // Import the config
+import config from './config.js'; // Import the config
 
 // Load environment variables from .env file
 dotenv.config();
@@ -74,14 +74,14 @@ const build = async () => {
 
         // Bundle JS (even though we don't have custom JS for now, it's ready)
         const jsBuildOptions = {
-            entryPoints: ['src/app.mjs'],
+            entryPoints: ['src/app.js'],
             bundle: true,
             platform: 'node',
             target: 'es2017',
             format: 'esm', // Set format to ES Module
             outdir: 'public/js',
             sourcemap: true,
-            minify: true, // Minify JS
+            minify: false, // Minify JS
             external: externalModules, // Use dynamically generated list of external modules
             plugins: [
                 copy({
