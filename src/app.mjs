@@ -16,6 +16,7 @@ import setupDB from './middleware/setupDB.mjs';
 import setupConfig from './middleware/setupConfigs.mjs';
 import bodyParser from 'body-parser';
 import csurf from 'csurf';
+import livereload from 'connect-livereload';
 
 
 // Get __dirname equivalent
@@ -90,26 +91,36 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Register routes
 app.use('/', csrfProtection, indexRouter);
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404));
+// // catch 404 and forward to error handler
+// app.use((req, res, next) => {
+//   next(createError(404));
+// });
+//
+// // error handler
+// app.use((err, req, res, next) => {
+//   // Set locals, providing error details
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+//
+//   // Set status based on error status or default to 500
+//   const statusCode = err.status || 500;
+//   res.status(statusCode);
+//
+//   // Render the error page with both the error message and status code
+//   res.render('main/error', {
+//     error: res.locals.message,
+//     status: statusCode
+//   });
+// });
+
+// Use livereload middleware
+if (process.env.NODE_ENV === 'development') {
+  app.use(livereload());
+}
+
+// Start the server
+app.listen(config.app.port, () => {
+  console.log(`Server running on port ${config.app.port}`);
 });
 
-// error handler
-app.use((err, req, res, next) => {
-  // Set locals, providing error details
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // Set status based on error status or default to 500
-  const statusCode = err.status || 500;
-  res.status(statusCode);
-
-  // Render the error page with both the error message and status code
-  res.render('main/error', {
-    error: res.locals.message,
-    status: statusCode
-  });
-});
-
-export default app;
+// export default app;
