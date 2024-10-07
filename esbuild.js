@@ -54,9 +54,11 @@ const build = async () => {
                     transform: (source) => {
                         return source
                             // Replace $govuk-assets-path references for fonts
-                            .replace(/url\(["']?\/assets\/fonts\/([^"'\)]+)["']?\)/g, 'url("./assets/fonts/$1")')
+                            .replace(/url\(["']?\/assets\/fonts\/([^"'\)]+)["']?\)/g,
+                                'url("../../node_modules/govuk-frontend/dist/govuk/assets/fonts/$1")')
                             // Replace $govuk-assets-path references for images
-                            .replace(/url\(["']?\/assets\/images\/([^"'\)]+)["']?\)/g, 'url("./assets/images/$1")');
+                            .replace(/url\(["']?\/assets\/images\/([^"'\)]+)["']?\)/g,
+                                'url("../../node_modules/govuk-frontend/dist/govuk/assets/images/$1")');
                     }
                 })
             ],
@@ -79,16 +81,22 @@ const build = async () => {
             platform: 'node',
             target: 'es2017',
             format: 'esm', // Set format to ES Module
-            outdir: 'public/js',
+            outdir: 'public/',
             sourcemap: true,
             minify: true, // Minify JS
             external: externalModules, // Use dynamically generated list of external modules
             plugins: [
                 copy({
-                    assets: {
-                        from: ['./node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js'],
-                        to: ['./govuk-frontend.min.js']
-                    }
+                    assets: [
+                        {
+                            from: './node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js',
+                            to: './js/govuk-frontend.min.js'
+                        },
+                        {
+                            from: './node_modules/govuk-frontend/dist/govuk/assets/',
+                            to: './assets'
+                        }
+                    ]
                 })
             ]
         };

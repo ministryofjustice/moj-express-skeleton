@@ -1,22 +1,23 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
+import { createRequire } from 'module';
+import { csrfProtection } from '../middleware/csrfMiddleWare.js';
+import { setupMiddlewares } from '../middleware/commonMiddleware.js';
+import setupConfig from '../middleware/setupConfigs';
 import session from 'express-session';
-import compression from 'compression';
-import nunjucksSetup from './utils/nunjucksSetup.mjs';
-import rateLimitSetUp from './utils/rateLimitSetUp.mjs';
-import helmetSetup from './utils/helmetSetup.mjs';
-import setupCSP from './middleware/setupCSP.mjs';
-import config from './config.mjs';
-import indexRouter from './routes/index.mjs';
-import axiosMiddleware from './utils/axiosSetup.mjs';
-import setupDB from './middleware/setupDB.mjs';
-import setupConfig from './middleware/setupConfigs.mjs';
-import bodyParser from 'body-parser';
-import csurf from 'csurf';
+import nunjucksSetup from '../utils/nunjucksSetup';
+import rateLimitSetUp from '../utils/rateLimitSetUp';
+import helmetSetup from '../utils/helmetSetup';
+import config from '../config';
+import indexRouter from '../routes/index';
+// import axiosMiddleware from '../utils/axiosSetup';
+// import setupDB from '../middleware/setupDB';
 import livereload from 'connect-livereload';
+
+const require = createRequire(import.meta.url);
+const logger = require('morgan');
+const compression = require('compression');
 
 
 // Get __dirname equivalent
@@ -25,10 +26,13 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-app.use(axiosMiddleware);
+// Set up common middleware
+setupMiddlewares(app);
+
+// app.use(axiosMiddleware);
 
 //Set up DB to be used in requests
-setupDB(app)
+// setupDB(app)
 
 // Response compression
 app.use(compression({
@@ -48,13 +52,10 @@ app.use(compression({
 }));
 
 // Middleware function to set up a Content Security Policy (CSP) nonce for each request.
-setupCSP(app);
+app.use(csrfProtection);
 
 // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
 helmetSetup(app);
-
-// csrfProtection setup
-const csrfProtection = csurf({ cookie: true });
 
 // Reducing fingerprinting
 app.disable('x-powered-by');
@@ -75,43 +76,12 @@ nunjucksSetup(app);
 rateLimitSetUp(app, config);
 
 // Config in templates
-setupConfig(app)
-
-// bodyParser
-app.use(bodyParser.urlencoded({ extended: false }));
+setupConfig(app);
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Register routes
-app.use('/', csrfProtection, indexRouter);
-
-// // catch 404 and forward to error handler
-// app.use((req, res, next) => {
-//   next(createError(404));
-// });
-//
-// // error handler
-// app.use((err, req, res, next) => {
-//   // Set locals, providing error details
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
-//
-//   // Set status based on error status or default to 500
-//   const statusCode = err.status || 500;
-//   res.status(statusCode);
-//
-//   // Render the error page with both the error message and status code
-//   res.render('main/error', {
-//     error: res.locals.message,
-//     status: statusCode
-//   });
-// });
+app.use('/', indexRouter);
 
 // Use livereload middleware
 if (process.env.NODE_ENV === 'development') {
@@ -122,5 +92,3 @@ if (process.env.NODE_ENV === 'development') {
 app.listen(config.app.port, () => {
   console.log(`Server running on port ${config.app.port}`);
 });
-
-// export default app;
