@@ -1,5 +1,2 @@
-@import "../../node_modules/govuk-frontend/dist/govuk/all.scss";
-body {
-  background-color: gray;
-  background-image: src('../assets/images/govuk-crest.png');
-}
+@import "../../node_modules/govuk-frontend/dist/govuk/all";
+@import "app_styling";
