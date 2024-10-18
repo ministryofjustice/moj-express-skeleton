@@ -9,8 +9,5 @@ node_modules/
 .DS_Store
 
 # MOJ Express Skeleton
-public/assets/*
-public/js/*
-public/css/*
-public/*
+public/
 .env
