@@ -3,7 +3,7 @@ import livereload from 'livereload'; // Import livereload for live reloading
 import path from 'path'; // Import path module for handling file paths
 import { fileURLToPath } from 'url'; // Import fileURLToPath to convert file URLs to paths
 import { spawn } from 'child_process'; // Import spawn from child_process to spawn new processes
-import config from './config.mjs'; // Import the config
+import config from './config.js'; // Import the config
 import { build } from './esbuild.js'; // Import the build function
 
 // Get the directory name
