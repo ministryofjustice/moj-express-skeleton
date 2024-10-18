@@ -1,4 +1,4 @@
-import db from '../utils/sqliteSetup.mjs';
+import db from '../utils/sqliteSetup.js';
 
 /**
  * Middleware setup function to attach the database connection to request objects.

@@ -6,9 +6,8 @@ node_modules/
 
 # Visual Studios
 .trunk/
+.DS_Store
 
 # MOJ Express Skeleton
-public/assets/*
-public/javascripts/*
-public/stylesheets/*
+public/
 .env
