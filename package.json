@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node public/app.js",
     "build": "node esbuild.js",
+    "lint": "npx eslint . --ignore-pattern \"node_modules/*\" --ignore-pattern \"public/*\" --fix",
     "dev": "nodemon --watch src --ext js,scss --exec 'node start-server.js'",
     "scss": "sass --watch src/scss/main.scss public/stylesheets/application.min.css --style=compressed",
     "js": "cp -R node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js* public/javascripts",

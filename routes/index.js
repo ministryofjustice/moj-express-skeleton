@@ -4,7 +4,8 @@ import { check, validationResult } from 'express-validator';
 import { csrfValidate } from '../middleware/csrfMiddleWare.js';
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
+  console.log(res.locals.nonce);
   res.render('main/index', {errors: {}, data: {} });
 });
 

@@ -7,19 +7,19 @@ import db from '../utils/sqliteSetup.js';
  * @param {object} app - The Express application instance.
  */
 const setupDB = (app) => {
-    /**
-     * Middleware to add the database connection to the request object.
-     *
-     * @param {object} req - The Express request object.
-     * @param {object} res - The Express response object.
-     * @param {function} next - The next middleware function in the stack.
-     */
-    const dbRequest = (req, res, next) => {
-        req.db = db;
-        next();
-    };
+  /**
+   * Middleware to add the database connection to the request object.
+   *
+   * @param {object} req - The Express request object.
+   * @param {object} res - The Express response object.
+   * @param {Function} next - The next middleware function in the stack.
+   */
+  const dbRequest = (req, res, next) => {
+    req.db = db;
+    next();
+  };
 
-    app.use(dbRequest);
+  app.use(dbRequest);
 };
 
 export default setupDB;
