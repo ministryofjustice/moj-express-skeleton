@@ -58,6 +58,7 @@
 {% endblock %}
 
 {% block bodyEnd %}
+  <p>{{ cspNonce }}</p>
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
   <script type="module" nonce="{{ cspNonce }}" src="/js/govuk-frontend.min.js"></script>
   <script type="module" nonce="{{ cspNonce }}">

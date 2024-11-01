@@ -43,7 +43,6 @@ export const csrfProtection = (req, res, next) => {
   res.locals.csrfToken = csrfToken;
 
   // Set the Content-Security-Policy header with the nonce
-  console.log('Setting CSP with nonce:', nonceToken);
   res.setHeader(
     'Content-Security-Policy',
     `script-src 'self' 'nonce-${nonceToken}';`

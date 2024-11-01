@@ -56,6 +56,7 @@ app.use(compression({
 /**
  * Middleware function to set up a Content Security Policy (CSP) nonce for each request.
  * This helps in preventing certain types of attacks like XSS.
+ * This is only on in production.
  */
 app.use(csrfProtection);
 

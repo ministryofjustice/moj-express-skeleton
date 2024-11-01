@@ -1,13 +1,9 @@
 import { create } from 'middleware-axios';
 
 /**
- 
 Axios middleware to attach Axios instance to request object.
- 
 @param {object} req - The Express request object.
- 
 @param {object} res - The Express response object.
- 
 @param {Function} next - The next middleware function in the stack.
  */
 const axiosMiddleware = (req, res, next) => {
