@@ -6,7 +6,7 @@ import config from '../config.js';
  *
  * @param {object} app - The Express application instance.
  */
-const setupConfig = (app) => {
+export const setupConfig = (app) => {
   /**
    * Middleware to add config to response locals.
    *
@@ -20,5 +20,3 @@ const setupConfig = (app) => {
   };
   app.use(configMiddleware);
 };
-
-export default setupConfig;
