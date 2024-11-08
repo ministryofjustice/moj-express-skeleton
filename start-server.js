@@ -13,7 +13,14 @@ const __dirname = path.dirname(__filename);
 let serverProcess; // Variable to hold the server process
 let livereloadServer; // Variable to hold the livereload server
 
-// Function to start the server
+/**
+ * Starts the server by spawning a new process.
+ * If an existing server process is running, it kills the process before starting a new one.
+ * If the specified port is in use, it attempts to start the server on the next available port.
+ *
+ * @param {number} port - The port number to start the server on.
+ * @returns {void}
+ */
 const startServer = (port) => {
   // If there's an existing server process, kill it
   if (serverProcess) {
@@ -49,7 +56,13 @@ const startServer = (port) => {
   }, 1000); // 1-second delay to ensure the port is released
 };
 
-// Function to start the build and server
+/**
+ * Starts the build process and server.
+ * If in development mode, sets up livereload and file watching for automatic rebuilds.
+ *
+ * @async
+ * @returns {Promise<void>} A promise that resolves when the server and file watching setup are complete.
+ */
 const start = async () => {
   // Log the current NODE_ENV and port
   console.log(`Current NODE_ENV: ${config.app.environment}`);
@@ -95,7 +108,13 @@ const start = async () => {
   }
 };
 
-// Sanitize error messages to avoid logging sensitive information
+/**
+ * Sanitizes error messages to remove sensitive information before logging.
+ * This function can be customized to remove or mask specific details.
+ *
+ * @param {Error} error - The error object to sanitize.
+ * @returns {object} A sanitized version of the error object.
+ */
 const sanitizeError = (error) => {
   // Example: Remove stack traces or any sensitive data from the error object
   const sanitizedError = { ...error };

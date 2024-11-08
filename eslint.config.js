@@ -2,8 +2,7 @@ import globals from 'globals';
 import pluginJs from '@eslint/js';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 
-
-// Alter this config file to meet your projects needs and standards.
+// Alter this config file to meet your project's needs and standards.
 export default [
   {
     languageOptions: {

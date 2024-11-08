@@ -22,12 +22,20 @@ Create your local config file `.env` from the template file:
 cp .env.example .env
 ```
 
-### Install and run application
+### Install and run application for development
 ```shell
 npm install
+npm run build
 npm run dev
 ```
 Then, load http://localhost:3000/ in your browser to access the app.
+
+### Install and run application for production
+```shell
+npm install
+npm run build
+npm run start
+```
 
 #### TO NOTE:
 
@@ -36,13 +44,6 @@ You may have to tell your local machine to use the latest version of node alread
 ```
 nvm install node
 ```
-
-### Running the app locally with DEBUG enabled
-
-```
-DEBUG=moj-express-skeleton:* npm start
-```
-This enables DEBUG, and you can type http://localhost:3000/ into your browser to access the app.
 
 ## Routing
 This skeleton uses the built-in Express JS routing. 
@@ -137,14 +138,10 @@ project needs.
 
 To run ESlint:
 
-`npx eslint .`
-
-To apply fixes that ESLint has found
-
-`npx eslint . --fix`
+`npm run lint`
 
 ### Axios
-Within this skeleton [axios](https://github.com/axios/axios) with [middleware-axios](https://github.com/krutoo/middleware-axios) (used as a utility `../utils/axiosSetup.mjs`, and can be extended with further middleware) is set up and ready to use out of the box.
+Within this skeleton [axios](https://github.com/axios/axios) with [middleware-axios](https://github.com/krutoo/middleware-axios) (used as a utility `../utils/axiosSetup.js`, and can be extended with further middleware) is set up and ready to use out of the box.
 
 Below is an example of implementation of how to use the `axios_api` function, in other modules to make server/api calls:
 
