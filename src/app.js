@@ -1,16 +1,12 @@
 import express from 'express';
 import { createRequire } from 'module';
-import { csrfProtection } from '../middleware/csrfMiddleWare.js';
-import { setupMiddlewares } from '../middleware/commonMiddleware.js';
-import setupConfig from '../middleware/setupConfigs';
+import { csrfProtection , setupMiddlewares, setupConfig } from '../middleware';
 import session from 'express-session';
 import nunjucksSetup from '../utils/nunjucksSetup';
 import rateLimitSetUp from '../utils/rateLimitSetUp';
 import helmetSetup from '../utils/helmetSetup';
 import config from '../config';
 import indexRouter from '../routes/index';
-// import axiosMiddleware from '../utils/axiosSetup';
-// import setupDB from '../middleware/setupDB';
 import livereload from 'connect-livereload';
 
 const require = createRequire(import.meta.url);

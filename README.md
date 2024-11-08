@@ -1,5 +1,5 @@
 # MOJ Express.js Skeleton
-![govuk-frontend 5.4.0](https://img.shields.io/badge/govuk--frontend%20version-5.4.0-005EA5?logo=gov.uk&style=flat)
+![govuk-frontend 5.7.1](https://img.shields.io/badge/govuk--frontend%20version-5.7.1-005EA5?logo=gov.uk&style=flat)
 
 Express.js is a fast, unopinionated, minimalist web framework for Node.js.
 
@@ -10,7 +10,7 @@ This is a template app using the GOV.UK Frontend and GOV.UK Design System which 
 The app is provided intentionally bare, with just the essential parts that all services need, such as error pages, accessibility statement and privacy notice. It uses a number of other packages to provide the [features](#features) described below with sensible and best-practice defaults. Please read the next steps section for guidance on how to start building out your app on top of this template.
 
 ## Prerequisites
-- node stable version [20.15.1]
+- node stable version [20.17.0]
 
 ## Getting started
 
@@ -37,7 +37,7 @@ npm run build
 npm run start
 ```
 
-#### TO NOTE:
+#### Node Version Manager
 
 You may have to tell your local machine to use the latest version of node already installed on your device, before installing and running the application. Use the following command.
 
@@ -73,18 +73,33 @@ There are many frameworks to test your Express.js application (a few of these fr
 
 
 ## Features
-- [Asset management](#asset-management)
-- [Cache busting](#cache-busting)
-- [Form validation](#form-validation)
-- [CSRF protection](#csrf-protection)
-- [Content Security Policy (CSP)](#content-security-policy-csp)
-- [Response compression](#response-compression)
-- [Rate limiting](#rate-limiting)
-- [Nunjucks support](#nunjucks-support)
-- [ES6 JS Documentation](#es6-js-documentation)
-- [Linter](#linter)
-- [Axios](#axios)
-- [SQLite database](#sqlite-database)
+- [MOJ Express.js Skeleton](#moj-expressjs-skeleton)
+  - [Prerequisites](#prerequisites)
+  - [Getting started](#getting-started)
+    - [Set local environment variables](#set-local-environment-variables)
+    - [Install and run application for development](#install-and-run-application-for-development)
+    - [Install and run application for production](#install-and-run-application-for-production)
+      - [Node Version Manager](#node-version-manager)
+  - [Routing](#routing)
+  - [Testing](#testing)
+    - [Unit/Integration Testing example frameworks](#unitintegration-testing-example-frameworks)
+    - [E2E Testing example frameworks](#e2e-testing-example-frameworks)
+  - [Features](#features)
+  - [Examples of features](#examples-of-features)
+    - [Asset management](#asset-management)
+    - [Cache busting](#cache-busting)
+    - [Form validation](#form-validation)
+    - [CSRF protection](#csrf-protection)
+    - [Content Security Policy (CSP)](#content-security-policy-csp)
+    - [Response compression](#response-compression)
+    - [Rate limiting](#rate-limiting)
+    - [Nunjucks support](#nunjucks-support)
+    - [ES6 JS Documentation](#es6-js-documentation)
+    - [Linter](#linter)
+  - [Contributors](#contributors)
+  - [Support](#support)
+  - [Acknowledgment and Attribution](#acknowledgment-and-attribution)
+  - [Licence](#licence)
 
 ## Examples of features 
 Please refer to the specific packages documentation for more details.
@@ -140,76 +155,10 @@ To run ESlint:
 
 `npm run lint`
 
-### Axios
-Within this skeleton [axios](https://github.com/axios/axios) with [middleware-axios](https://github.com/krutoo/middleware-axios) (used as a utility `../utils/axiosSetup.js`, and can be extended with further middleware) is set up and ready to use out of the box.
-
-Below is an example of implementation of how to use the `axios_api` function, in other modules to make server/api calls:
-
-```mjs
-// routes/index.mjs
-import express from 'express';
-
-const router = express.Router();
-
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('main/index', { title: 'Express' });
-});
-
-// Make an API call with `Axios` and `middleware-axios`
-// GET users from external API
-router.get('/users', async (req, res, next) => {
-  try {
-      // Use the Axios instance attached to the request object
-      const response = await req.axiosMiddleware.get('https://jsonplaceholder.typicode.com/users');
-      res.json(response.data);
-  } catch (error) {
-      next(error);
-  }
-});
-
-export default router;
-```
-
-### SQLite database
-
-
-Within this skeleton [SQLite3](https://docs.python.org/3/library/sqlite3.html) is set up and ready to use out of the box. However, if you wish to use something
-else as your database, please see [Database integration Options](https://expressjs.com/en/guide/database-integration.html).
-
-Within the skeleton you'll find a js file called `sqliteSetup.js` under the utils directory.
-
-Here is where you can initialise your database. Example below:
-
-```sql
-db.serialize(() => {
-db.run("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)");
-db.run("INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com')");
-db.run("INSERT INTO users (name, email) VALUES ('Jane Doe', 'jane@example.com')");
-});
-```
-
-Middleware `setupDB`, is set up to allow database queries to be run against your SQLite3.
-
-`setupDB` sets up db to access in any of your routes, such as this example below.
-
-```mjs
-router.get('/users', (req, res, next) => {
-  req.db.all("SELECT * FROM users", (err, rows) => {
-    if (err) {
-      res.status(500).json({ error: err.message });
-      return;
-    }
-    res.json({ users: rows });
-  });
-});
-```
-
 ## Contributors
 - [Patrick Sweeting](https://github.com/psweeting1) (Primary maintainer)
 - [Imtiaz Ahmed](https://github.com/imtiazAhmd) (Primary maintainer)
 - [Masum Khan](https://github.com/MazOneTwoOne) (Maintainer)
-- [Stephanie de Jong](https://github.com/skdejong) (Maintainer)
 
 ## Support
 This software is provided *"as-is"* without warranty. Support is provided on a *"best endeavours"* basis by the maintainers and open source community.
@@ -227,3 +176,9 @@ If you find this project helpful and decide to use it in your own work, we kindl
 This project uses code from [Your Repository Name](https://github.com/yourusername/your-repository), originally developed by [Your Name or Organization].
 ```
 Thank you for your support and for helping to spread the word about our work!
+
+## Licence
+
+This project is licensed under the [MIT License][mit].
+
+[mit]: LICENCE
