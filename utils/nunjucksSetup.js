@@ -1,5 +1,6 @@
 import nunjucks from 'nunjucks';
 import path from 'path';
+import { getLatestBuildFile } from '../utils/buildHelper.js';
 
 /**
  * Sets up Nunjucks as the template engine for the given Express application.
@@ -13,6 +14,20 @@ const nunjucksSetup = (app) => {
   const appInstance = app;
   appInstance.set('view engine', 'njk');
   appInstance.locals.asset_path = '/assets/';
+  /**
+   * Retrieves the latest build file for the given prefix and extension.
+   *
+   * @param {string} prefix - The prefix of the asset file.
+   * @param {string} ext - The extension of the asset file (e.g., 'js' or 'css').
+   * @returns {string} The path to the latest build file.
+   */
+  appInstance.locals.getAsset = (prefix, ext) => {
+    const directory = ext === 'js' || ext === 'min.js' ? 'public/js' : 'public/css';
+    console.log('DIRECTORY', directory);
+    console.log('PREFIX', prefix);
+    console.log('EXT', ext);
+    return getLatestBuildFile(directory, prefix, ext);
+  };
 
   // Tell Nunjucks where to look for njk files
   nunjucks.configure(
