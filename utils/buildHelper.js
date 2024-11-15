@@ -20,6 +20,5 @@ export const getLatestBuildFile = (directory, prefix, extension) => {
   const files = fs.readdirSync(directory);
   const pattern = new RegExp(`^${prefix}\\.\\d+\\.${extension}$`);
   const matchingFiles = files.filter(file => pattern.test(file));
-  console.log('FILE PATH', matchingFiles.length > 0 ? matchingFiles[0] : '');
   return matchingFiles.length > 0 ? matchingFiles[0] : '';
 };

@@ -10,7 +10,7 @@ import { getLatestBuildFile } from '../utils/buildHelper.js';
  * @param {import('express').Application} app - The Express application instance.
  * @returns {void} This function does not return a value; it configures Nunjucks for the provided app.
  */
-const nunjucksSetup = (app) => {
+export const nunjucksSetup = (app) => {
   const appInstance = app;
   appInstance.set('view engine', 'njk');
   appInstance.locals.asset_path = '/assets/';
@@ -23,9 +23,6 @@ const nunjucksSetup = (app) => {
    */
   appInstance.locals.getAsset = (prefix, ext) => {
     const directory = ext === 'js' || ext === 'min.js' ? 'public/js' : 'public/css';
-    console.log('DIRECTORY', directory);
-    console.log('PREFIX', prefix);
-    console.log('EXT', ext);
     return getLatestBuildFile(directory, prefix, ext);
   };
 
@@ -43,5 +40,3 @@ const nunjucksSetup = (app) => {
     }
   );
 };
-
-export default nunjucksSetup;
