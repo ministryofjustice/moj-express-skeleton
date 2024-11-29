@@ -5,7 +5,7 @@ import helmet from 'helmet';
  *
  * @param {object} app - The Express application instance.
  */
-const helmetSetup = (app) => {
+export const helmetSetup = (app) => {
   app.use(helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ['\'self\''],
@@ -25,5 +25,3 @@ const helmetSetup = (app) => {
     }
   }));
 };
-
-export default helmetSetup;

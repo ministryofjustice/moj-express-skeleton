@@ -6,7 +6,7 @@ import rateLimit from 'express-rate-limit';
  * @param {object} app - The Express app instance.
  * @param {object} config - The configuration object containing rate limiting settings.
  */
-const rateLimitSetUp = (app, config) => {
+export const rateLimitSetUp = (app, config) => {
   /**
    * Rate limiter for general routes.
    * Limits each IP to 100 requests per 15 minutes.
@@ -20,5 +20,3 @@ const rateLimitSetUp = (app, config) => {
   // Apply the general rate limiter to all requests
   app.use(generalLimiter);
 };
-
-export default rateLimitSetUp;

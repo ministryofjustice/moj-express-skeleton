@@ -5,10 +5,11 @@ import dotenv from 'dotenv';
 import { copy } from 'esbuild-plugin-copy';
 import fs from 'fs-extra';
 import path from 'path';
+import  { getBuildNumber } from './utils/index.js';
 
 // Load environment variables from .env file
 dotenv.config();
-
+const buildNumber = getBuildNumber();
 /**
  * Copies assets such as fonts and images from the govuk-frontend package
  * to the 'public/assets' directory for use in the application.
@@ -55,7 +56,12 @@ const build = async () => {
     const scssBuildOptions = {
       entryPoints: ['src/scss/main.scss'],
       bundle: true,
-      outdir: 'public/css',
+      /**
+       * Generates the output file path for the compiled CSS.
+       *
+       * @returns {string} The transformed CSS file path with the build number.
+       */
+      outfile: `public/css/main.${buildNumber}.css`,
       plugins: [
         sassPlugin({
           resolveDir: path.resolve('src/scss'),
@@ -75,7 +81,7 @@ const build = async () => {
             // Replace $govuk-assets-path references for images
               .replace(/url\(["']?\/assets\/images\/([^"')]+)["']?\)/g,
                 'url("../../node_modules/govuk-frontend/dist/govuk/assets/images/$1")');
-          }
+          },
         })
       ],
       loader: {
@@ -97,16 +103,16 @@ const build = async () => {
       platform: 'node',
       target: 'es2020',
       format: 'esm', // Set format to ES Module
-      outdir: 'public/',
       sourcemap: true,
       minify: true, // Minify JS
       external: externalModules, // Use dynamically generated list of external modules
+      outfile: 'public/app.js',
       plugins: [
         copy({
           assets: [
             {
               from: './node_modules/govuk-frontend/dist/govuk/govuk-frontend.min.js',
-              to: './js/govuk-frontend.min.js'
+              to: `./js/govuk-frontend.${buildNumber}.min.js`
             },
             {
               from: './node_modules/govuk-frontend/dist/govuk/assets/',
