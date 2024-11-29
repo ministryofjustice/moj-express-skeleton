@@ -37,7 +37,7 @@
     "esbuild": "^0.24.0",
     "esbuild-plugin-copy": "^2.1.1",
     "esbuild-sass-plugin": "^3.3.1",
-    "eslint": "^9.14.0",
+    "eslint": "^9.15.0",
     "eslint-plugin-jsdoc": "^50.4.3",
     "globals": "^15.8.0",
     "livereload": "^0.9.3",
