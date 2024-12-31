@@ -18,12 +18,13 @@ export default [
   {
     plugins: {
       jsdoc: jsdocPlugin,
+      prettier: '@eslint/plugin-prettier',
     },
     rules: {
-      'indent': ['error', 2],
-      'linebreak-style': ['error', 'unix'],
-      'quotes': ['error', 'single'],
-      'semi': ['error', 'always'],
+      'indent': 'off', // Prettier is handling this
+      'linebreak-style': 'off', // Prettier is handling this
+      'quotes': 'off', // Prettier is handling this
+      'semi': 'off', // Prettier is handling this
       'jsdoc/check-alignment': 'error',
       'jsdoc/check-param-names': 'error',
       'jsdoc/check-tag-names': 'error',
