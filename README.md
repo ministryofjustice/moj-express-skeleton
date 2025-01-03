@@ -24,6 +24,7 @@ cp .env.example .env
 
 ### Install and run application for development
 ```shell
+nvm use
 npm install
 npm run build
 npm run dev
@@ -32,17 +33,10 @@ Then, load http://localhost:3000/ in your browser to access the app.
 
 ### Install and run application for production
 ```shell
+nvm use
 npm install
 npm run build
 npm run start
-```
-
-#### Node Version Manager
-
-You may have to tell your local machine to use the latest version of node already installed on your device, before installing and running the application. Use the following command.
-
-```
-nvm install node
 ```
 
 ## Routing
